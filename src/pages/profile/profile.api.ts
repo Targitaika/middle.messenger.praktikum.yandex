@@ -1,28 +1,9 @@
 import HTTPTransport from '../../services/HTTPTransport';
 import BaseAPI from '../../services/BaseAPI';
+import { signInInterface } from '../home/modules/signin/signin.api';
 
 const authApiInstance = new HTTPTransport('/auth/');
 const userApiInstance = new HTTPTransport('/user/');
-
-// interface userItnerface {
-//   id: number;
-//   first_name: string;
-//   second_name: string;
-//   display_name: string;
-//   login: string;
-//   email: string;
-//   phone: string;
-//   avatar: string;
-// }
-
-export interface profileUpdate {
-  first_name: string;
-  second_name: string;
-  display_name: string;
-  login: string;
-  email: string;
-  phone: string;
-}
 
 export interface passwordUpdate {
   oldPassword: string;
@@ -30,18 +11,16 @@ export interface passwordUpdate {
 }
 
 export default class ProfileApi extends BaseAPI {
-  updateUserProfile(data: profileUpdate) {
+  updateUserProfile(data: signInInterface) {
     return userApiInstance.put('profile', { data });
   }
 
   updatePassword(data: passwordUpdate) {
-    const x = userApiInstance.put('password', { data });
-    // console.log(x);
-    return x;
+    return userApiInstance.put('password', { data }, false);
   }
 
   updateAvatar(data) {
     // file
-    return userApiInstance.put('profile/avatar');
+    return userApiInstance.put('profile/avatar', { data }, true);
   }
 }

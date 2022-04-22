@@ -1,1 +1,4 @@
-export { Login as default } from './login';
+import { Login } from './login';
+import { withUser, withUserAndPassword } from '../../../../services/Hocs';
+
+export default withUser(Login);

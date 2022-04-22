@@ -45,7 +45,7 @@ export function validation(
       break;
     default:
       errorMessage = 'Validation requires a type';
-      return false;
+      return true;
   }
   const reg = new RegExp(checkParameter, 'g');
   if (!reg.test(value)) {

@@ -3,6 +3,10 @@ export const list: {
   label: string;
   text: string;
   type: string;
+  events?: {
+    click?: () => void;
+    keydown?: (arg0: any, arg1: any) => void;
+  };
 }[] = [
   {
     label: 'Почта',

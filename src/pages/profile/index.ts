@@ -1,4 +1,4 @@
 import { Profile } from './profile';
-import { withUser } from '../../services/Hocs';
+import { withUser, withUserAndPassword } from '../../services/Hocs';
 
 export default withUser(Profile);

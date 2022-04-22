@@ -36,25 +36,27 @@ class AuthController {
       throw new Error(response.message);
     }
     await this.fetchUser();
-    const router = new Router('#root');
+    // this.password = data.password;
+    // store.set('currentPassword', data.password);
+    document.cookie = `password=${data.password}`;
 
     router.go('/messenger');
   }
 
   async login(data: loginInterface) {
     const response: any = await this.loginApi.login(data);
-    console.log('bluaaa', response);
+
     if (response.reason && response.reason !== 'User already in system') {
-      console.log(response.reason);
-    } else {
       throw new Error(response.message);
     }
     try {
       await this.fetchUser();
     } catch (e) {
-      throw new Error('Fetch user problem', e);
+      throw new Error(`Fetch user problem${e}`);
     }
+    // this.password = data.password;
 
+    document.cookie = `password=${data.password}`;
     router.go('/messenger');
   }
 
@@ -66,6 +68,7 @@ class AuthController {
 
   async fetchUser() {
     const user: any = await this.signinApi.request();
+
     if (user.status === 200) {
       store.set('currentUser', user.response);
     } else {

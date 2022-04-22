@@ -29,6 +29,10 @@
     margin-bottom: 60px;
 }
 
+.profile-page__img {
+    position: relative;
+}
+
 .profile-page__img > .profile-page__img-input {
     width: 100%;
     max-width: 130px;

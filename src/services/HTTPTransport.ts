@@ -52,14 +52,30 @@ export default class HTTPTransport {
     options.timeout,
   );
 
-  put = (url = '/', options: HTTPTransportOptionsInterface = {}) => this.request(
-    baseUrl + this.url + url,
-    {
-      ...options,
-      method: METHODS.PUT,
-    },
-    options.timeout,
-  );
+  put = (
+    url = '/',
+    options: HTTPTransportOptionsInterface = {},
+    isFile = false,
+  ) => {
+    if (!isFile) {
+      this.request(
+        baseUrl + this.url + url,
+        {
+          ...options,
+          method: METHODS.PUT,
+        },
+        options.timeout,
+      );
+    } else {
+      this.sendFile(
+        baseUrl + this.url + url,
+        {
+          ...options,
+        },
+        options.timeout,
+      );
+    }
+  };
 
   delete = (url = '/', options: HTTPTransportOptionsInterface = {}) => this.request(
     baseUrl + this.url + url,
@@ -76,7 +92,7 @@ export default class HTTPTransport {
     timeout = 5000,
   ) => {
     const { headers = {}, method, data } = options;
-    console.log('alla', url, data, timeout);
+
     return new Promise((resolve, reject) => {
       if (!method) {
         reject('No method');
@@ -111,6 +127,42 @@ export default class HTTPTransport {
       } else {
         xhr.send(JSON.stringify(data));
       }
+    });
+  };
+
+  sendFile = (
+    url: string,
+    options: HTTPTransportOptionsInterface = {},
+    timeout = 5000,
+  ) => {
+    const { headers = {}, method, data } = options;
+
+    const formData = new FormData();
+    console.log('data', data.files);
+    formData.append('avatar', data.files[0], 'avatar');
+
+    return new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+
+      xhr.open('PUT', url);
+
+      Object.keys(headers).forEach((key) => {
+        xhr.setRequestHeader(key, headers[key]);
+      });
+
+      xhr.onload = function () {
+        resolve(xhr);
+      };
+      xhr.withCredentials = true;
+      xhr.onabort = reject;
+      xhr.onerror = reject;
+      xhr.ontimeout = reject;
+
+      xhr.timeout = timeout;
+      xhr.withCredentials = true;
+      xhr.responseType = 'json';
+      console.log('formData', formData);
+      xhr.send(formData);
     });
   };
 }

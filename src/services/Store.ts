@@ -16,10 +16,12 @@ export interface currentUserInterface {
   email: string;
   phone: string;
   avatar: string;
+  password: string;
 }
 
 export interface storeDataInterface {
   currentUser?: currentUserInterface;
+  currentPassword?: { password: string };
 }
 
 export enum StoreEvents {
@@ -33,9 +35,9 @@ class Store extends EventBus {
     return this.state;
   }
 
-  public set(path: keyof storeDataInterface, value: unknown) {
+  public set(path: keyof storeDataInterface | string, value: unknown) {
     set(this.state, path, value);
-
+    console.log('Store', this.state, 'path', path, 'value', value);
     this.emit(StoreEvents.Updated);
   }
 }

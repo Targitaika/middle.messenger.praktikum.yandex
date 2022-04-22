@@ -19,7 +19,6 @@ export const fieldList: {
     placeholder: 'ivanivanov',
     events: {
       keydown: () => console.log(this),
-      // current.setProps({ form: { name: x.target.value } }),
     },
   },
   {

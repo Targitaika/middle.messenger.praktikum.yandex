@@ -1,4 +1,4 @@
 import { Signin } from './signin';
-import { withUser, withUserAndPassword } from '../../../../services/Hocs';
+import { withUser } from '../../../../services/Hocs';
 
 export default withUser(Signin);

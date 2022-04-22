@@ -60,3 +60,24 @@
 .btn_red {
     color: var(--color-red-1);
 }
+
+.btn_showUserModal {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: var(--color-white-1);
+    border: none;
+    font-size: 25px;
+    display: flex;
+    outline: none;
+    text-align: center;
+    cursor: pointer;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 15px;
+}
+
+.dn {
+    display: none;
+}

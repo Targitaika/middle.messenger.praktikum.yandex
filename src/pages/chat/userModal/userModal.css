@@ -1,0 +1,14 @@
+.userModal {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.14);
+    border-radius: 12px;
+    padding: 15px;
+    width: 240px;
+}
+
+.userModal__item {
+    margin-bottom: 10px;
+}

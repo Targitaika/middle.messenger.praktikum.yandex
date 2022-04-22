@@ -8,7 +8,6 @@ export const withStore = (mapStateToProps: (state: storeDataInterface) => Record
   return class extends Component {
     constructor(props: any) {
       state = mapStateToProps(store.getState());
-      console.log('asd', state, props);
       super({ ...props, ...state });
 
       store.on(StoreEvents.Updated, () => {
@@ -25,7 +24,4 @@ export const withStore = (mapStateToProps: (state: storeDataInterface) => Record
 };
 
 export const withUser = withStore((state) => state.currentUser);
-export const withUserAndPassword = withStore(
-  (state) => state.currentUser || state.currentPassword,
-);
-export const withPassword = withStore((state) => state.currentPassword);
+export const withChats = withStore((state) => state.chats);

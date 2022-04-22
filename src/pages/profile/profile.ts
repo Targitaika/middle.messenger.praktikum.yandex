@@ -3,28 +3,22 @@ import tmpl from './profile.hbs';
 import './profile.css';
 import Field from '../../components/field';
 import Button from '../../components/button';
-// import { fieldList } from '../home/modules/signin/mock';
 import { list as fieldList } from './mock';
-
 import { validateForm, isValidToSend } from '../../services/validation';
-
 import AuthController from '../../components/controllers/AuthController';
 import ProfileController from '../../components/controllers/ProfileController';
-import { passwordUpdate } from './profile.api';
-import { signInInterface } from '../home/modules/signin/signin.api';
 import getCookie from '../../services/getCookie';
 import { InputFile } from '../../components/inputFile/inputFile';
 
 interface ProfileProps {
   fields?: string;
   profileImg?: string;
-  // passwordData?: {};
-  // form?: signInInterface;
 }
 
-export class Profile extends Block {
+export default class Profile extends Block {
   constructor(props: ProfileProps) {
     super(props);
+
     this.setProps({
       isReadonly: {
         email: false,
@@ -64,7 +58,6 @@ export class Profile extends Block {
       Object.assign(this.props.passwordData, {
         newPassword: item.target.value,
       });
-      console.log(this.props.passwordData);
     } else {
       Object.assign(this.props.form, { [item.target.name]: item.target.value });
     }
@@ -83,18 +76,10 @@ export class Profile extends Block {
   };
 
   updateAvatar(e) {
-    // e.preventDefault();
-    // console.log('avatar0 = ', e);
-    // console.log('avatar1 = ', e.target);
-    // console.log('avatar2 = ', e.target.localName);
-    // console.log('avatar2 = ', e.target.files);
-    // console.log('avatar3 = ', e.file);
-    // this.setProps({ files: e.target.files[0] });
     ProfileController.updateAvatar(e.target);
   }
 
   render() {
-    console.log('props', this.props);
     return this.compile(tmpl, {
       ...this.props,
       profileImg:
@@ -106,7 +91,6 @@ export class Profile extends Block {
   protected initChildren() {
     for (let i = 0; i < fieldList.length; i++) {
       const value = this.props[fieldList[i].name];
-      console.log(this.props);
       this.children[`field-${i}`] = new Field({
         label: fieldList[i].label,
         name: fieldList[i].name,

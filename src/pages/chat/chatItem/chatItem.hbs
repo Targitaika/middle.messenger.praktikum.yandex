@@ -3,15 +3,15 @@
         <div class="chat-item__in">
             <div class="chat-item__left">
                 <img class="chat-left-avatar"
-                     src="{{src}}" alt="Аватар собеседника">
+                     src="{{last_message.user.avatar}}" alt="Аватар собеседника">
             </div>
             <div class="chat-item__right">
-                <div class="chat-item__name">{{name}}</div>
-                <div class="chat-item__text">{{text}}</div>
+                <div class="chat-item__name">{{title}}</div>
+                <div class="chat-item__text">{{last_message.content}}</div>
             </div>
             <div class="chat-item__abs">
-                <div class="chat-item__time">{{date}}</div>
-                <div class="chat-item__unread">{{unread}}</div>
+                <div class="chat-item__time">{{last_message.time}}</div>
+                <div class="chat-item__unread">{{unread_count}}</div>
             </div>
         </div>
     </div>

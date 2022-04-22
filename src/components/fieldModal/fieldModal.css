@@ -1,0 +1,47 @@
+.fieldModal__back {
+    background: rgb(0 0 0 / 60%);;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fieldModal {
+    background: white;
+    height: 257px;
+    width: 340px;
+    border-radius: 15px;
+    display: flex;
+}
+
+.fieldModal__in {
+    width: 100%;
+    height: 100%;
+    padding: 30px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.fieldModal__title {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 20px;
+    text-align: center;
+    color: #1E1E1E;
+}
+
+.fieldModal__field {
+    width: 100%;
+    margin-top: auto;
+    margin-bottom: 33px;
+}
+
+.fieldModal__btn {
+    width: 100%;
+}

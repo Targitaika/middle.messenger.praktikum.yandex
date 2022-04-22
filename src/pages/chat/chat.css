@@ -166,6 +166,11 @@
     margin-right: 10px;
 }
 
+.head-block__img img {
+    width: 100%;
+    height: 100%;
+}
+
 .head-block__name {
     font-style: normal;
     font-weight: 600;
@@ -179,6 +184,8 @@
     transform: rotate(90deg);
     font-size: 30px;
     cursor: pointer;
+    width: 25px;
+    height: 25px;
 }
 
 .content-block {
@@ -290,4 +297,8 @@
 
 .message_from .message__time {
     color: var(--color-grey-1);
+}
+
+.head-block__userModal {
+    position: relative;
 }

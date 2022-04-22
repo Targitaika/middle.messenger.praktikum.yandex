@@ -1,7 +1,5 @@
 import set from './set';
 import EventBus from './EventBus';
-import Block from './Component';
-import isEqual from './isEqual';
 
 type Indexed<T = any> = {
   [key in string]: T;
@@ -21,6 +19,7 @@ export interface currentUserInterface {
 
 export interface storeDataInterface {
   currentUser?: currentUserInterface;
+  chats?: any;
   currentPassword?: { password: string };
 }
 

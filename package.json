@@ -1,0 +1,28 @@
+{
+  "name": "yandexchat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Targitaika/middle.messenger.praktikum.yandex/tree/sprint_1.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Targitaika/middle.messenger.praktikum.yandex/tree/sprint_1/issues"
+  },
+  "homepage": "https://github.com/Targitaika/middle.messenger.praktikum.yandex/tree/sprint_1#readme",
+  "devDependencies": {
+    "parcel": "^2.4.1",
+    "parcel-transformer-hbs": "^1.0.4"
+  },
+  "dependencies": {
+    "handlebars": "^4.7.7",
+    "express": "^4.17.3"
+  }
+}

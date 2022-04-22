@@ -1,0 +1,12 @@
+node_modules
+/node_modules
+.parcel-cache
+/.parcel-cache
+
+/.idea/*
+!/.idea/runConfigurations
+!/.idea/customScripts
+/.dist/*
+.dist
+dist/
+/.eslintcache

@@ -1,4 +1,4 @@
-import Handlebars from "handlebars";
+import * as Handlebars from "handlebars";
 import tmpl from "./chat.hbs";
 import "./chat.css";
 import { Field } from "../../components/field";
@@ -9,19 +9,40 @@ import { MessageSendIcon } from "../../components/icons/messageSend";
 import { MessagePinIcon } from "../../components/icons/messagePin";
 import { tempData } from "./mock";
 
-Handlebars.registerHelper("chatListHelper", function (arr) {
-  return arr.reduce((prev, item) => {
-    if (typeof prev === "object") {
-      prev = ChatItem(prev) + ChatItem(item);
-    } else {
-      prev = prev + ChatItem(item);
-    }
+interface chatItemInterface {
+  name: string;
+  src: string;
+  text: string;
+  unread: number;
+}
 
-    return prev;
-  });
-});
+interface fieldInterface {
+  name: string;
+  label: string;
+  placeholder: string;
+  type: string | null;
+  icon: () => string;
+}
 
-const info = (data) => {
+interface infoInterface {
+  pinIcon: () => string;
+  sendIcon: () => string;
+  tikIcon: () => string;
+  chatList: Array<chatItemInterface>;
+  searchInput: (arg0: fieldInterface) => string;
+  messageInput: (arg0: fieldInterface) => string;
+}
+
+Handlebars.registerHelper(
+  "chatListHelper",
+  function (arr: Array<chatItemInterface>) {
+    return arr
+      .map((item) => ChatItem(item))
+      .reduce((prev: string, item: string) => prev + item);
+  }
+);
+
+const info = (): (() => string) => {
   return tmpl({
     pinIcon: MessagePinIcon(),
     sendIcon: MessageSendIcon(),
@@ -42,9 +63,7 @@ const info = (data) => {
     }),
   });
 };
-
-export const Chat = (data) => {
-  const template = Handlebars.compile(info(data));
-
+export const Chat = (data: any) => {
+  const template = Handlebars.compile(info());
   return template({ data });
 };

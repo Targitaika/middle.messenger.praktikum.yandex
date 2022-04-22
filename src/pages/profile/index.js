@@ -1,4 +1,4 @@
-import Handlebars from "handlebars";
+import * as Handlebars from "handlebars";
 import tmpl from "./profile.hbs";
 import "./profile.css";
 import { Button } from "../../components/button";

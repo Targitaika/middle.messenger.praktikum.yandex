@@ -2,20 +2,33 @@ import Handlebars from "handlebars";
 import tmpl from './field.hbs';
 import './field.css';
 
-const field = (name, label, placeholder = "", type = "text") => {
+const field = (name, label, placeholder = "", type = 'text') => {
+    let icon = '';
+    let customStyles = '';
+
     if (label === undefined) {
-        console.log('labelundefined');
+        if (name === undefined) {
+            name = "Name"
+        }
         label = name
     }
     if (name === undefined) {
-        console.log('nameundefined');
         name = label
+    }
+
+    if (type === 'search') {
+        type = 'text';
+        icon = 'Icon';
+        label = '';
+        customStyles = 'search-input';
     }
     return tmpl({
         name: name,
         label: label,
         placeholder: placeholder,
         type: type,
+        customStyles: customStyles,
+        icon: icon
     })
 }
 export const Field = (data) => {

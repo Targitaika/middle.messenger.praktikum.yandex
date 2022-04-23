@@ -1,0 +1,54 @@
+.profile-page {
+    margin: 0 auto;
+    max-width: 510px;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.profile-page__in {
+    width: 100%;
+}
+
+.profile-page__img {
+    width: 130px;
+    height: 130px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 21px;
+}
+
+.profile-page__name {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 16px;
+    color: #1E1E1E;
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.profile-page__img > input {
+    width: 100%;
+    max-width: 130px;
+    height: 100%;
+    overflow: hidden;
+    outline: none;
+    border-radius: 50%;
+
+}
+
+.profile-page__field {
+}
+
+.profile-page__btn {
+    padding: 10px 0;
+    border-bottom: 1px solid #EAEAEA;
+}
+
+.profile-page__btn:last-child {
+    border-bottom: 0;
+}

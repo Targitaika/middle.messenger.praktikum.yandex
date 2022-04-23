@@ -1,0 +1,33 @@
+.profile-list-item {
+    padding: 10px 0;
+    border-bottom: 1px solid #EAEAEA;
+}
+
+.profile-list-item:last-child {
+    border-bottom: 0;
+}
+
+.profile-list-item__name {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+    /* identical to box height, or 100% */
+
+
+    color: #1E1E1E;
+}
+
+.profile-list-item__text {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+    /* identical to box height, or 100% */
+
+    text-align: right;
+
+    color: #999999;
+}

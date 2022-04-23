@@ -2,10 +2,10 @@
   "name": "yandexchat",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "dev": "parcel index.html",
-    "build": "parcel build index.html"
+    "dev": "parcel static/index.html",
+    "build": "parcel build static/index.html",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -22,7 +22,7 @@
     "parcel-transformer-hbs": "^1.0.4"
   },
   "dependencies": {
-    "handlebars": "^4.7.7",
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "handlebars": "^4.7.7"
   }
 }

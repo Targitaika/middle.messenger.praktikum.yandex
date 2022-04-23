@@ -21,6 +21,9 @@ body {
 .chat-right-block {
     flex-basis: 76%;
     padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .link-block__a {
@@ -157,6 +160,8 @@ body {
 }
 
 .head-block {
+    flex: 0 0 55px;
+    border-bottom: 1px solid #EAEAEA;
 }
 
 .head-block__in {
@@ -191,4 +196,117 @@ body {
     transform: rotate(90deg);
     font-size: 30px;
     cursor: pointer;
+}
+
+.content-block {
+    flex: 1 1 auto;
+}
+
+.content-block__in {
+    height: 100%;
+}
+
+.input-block__btn {
+    width: 28px;
+    height: 28px;
+    flex: 0 0 28px;
+
+}
+
+.input-block__pin {
+    width: 32px;
+    height: 32px;
+    margin-right: 10px;
+    flex: 0 0 32px;
+
+}
+
+.input-block__input {
+    margin-right: 10px;
+    flex: 1 1 auto;
+}
+
+.input-block {
+    border-top: 1px solid #EAEAEA;
+    flex: 0 0 55px;
+}
+
+.input-block__in {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.messages {
+    height: 100%;
+}
+
+.messages__in {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 30px 0;
+}
+
+.message:first-child {
+    margin-top: 0;
+}
+
+.message {
+    margin-top: 30px;
+    padding: 11px;
+    max-width: 45%;
+    min-width: 114px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.message.message_to {
+    background: #E4EDFD;
+    align-self: flex-end;
+}
+
+.message.message_from {
+    background: #F8F8F8;
+    align-self: flex-start;
+}
+
+.message_to + .message_to {
+    margin-top: 10px;
+}
+
+.message_from + .message_from {
+    margin-top: 10px;
+}
+
+.message__text {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    color: #1E1E1E;
+    margin-right: auto;
+}
+
+.message__status {
+    margin-right: 3px;
+    margin-top: 2px;
+}
+
+.message__time {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 9px;
+    line-height: 9px;
+    color: #3369F3;
+}
+
+.message_from .message__time {
+    color: #999999;
 }

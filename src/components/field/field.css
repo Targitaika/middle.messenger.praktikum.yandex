@@ -57,3 +57,20 @@
     color: #999999;
     border-radius: 5px;
 }
+
+.send-message .input {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: #EFEFEF;
+    border: none;
+    padding: 10px 20px;
+    outline: none;
+    ffont-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+    color: #999999;
+    border-radius: 30px;
+}

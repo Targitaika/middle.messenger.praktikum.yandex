@@ -20,20 +20,57 @@
             </div>
         </div>
         <div class="content-block">
-            <div class="messages">
-                <div class="messages__in">
-                    <div class="messages__item">
-                        <div class="message">Привет</div>
-                        <div class="message">Пока</div>
+            <div class="content-block__in">
+                <div class="messages">
+                    <div class="messages__in">
+                        <!--                        <div class="messages__item">-->
+                        <div class="message message_from">
+                            <div class="message__text">
+                                Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то
+                                момент попросила Хассельблад адаптировать модель SWC для полетов на Луну. Сейчас мы все
+                                знаем что астронавты летали с моделью 500 EL — и к слову говоря, все тушки этих камер
+                                все еще находятся на поверхности Луны, так как астронавты с собой забрали только кассеты
+                                с пленкой.
+
+                                Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету они
+                                так никогда и не попали. Всего их было произведено 25 штук, одну из них недавно продали
+                                на аукционе за 45000 евро.
+                            </div>
+                            <div class="message__time">11:45</div>
+                        </div>
+                        <div class="message message_to">
+                            <div class="message__text">Пока</div>
+                            <div class="message__status">{{{tikIcon}}}</div>
+                            <div class="message__time">12:00</div>
+                        </div>
+                        <div class="message message_to">
+                            <div class="message__text">Пока</div>
+                            <div class="message__status">{{{tikIcon}}}</div>
+                            <div class="message__time">12:00</div>
+                        </div>
+                        <div class="message message_to">
+                            <div class="message__text">Пока</div>
+                            <div class="message__status">{{{tikIcon}}}</div>
+                            <div class="message__time">12:00</div>
+                        </div>
+                        <div class="message message_from">
+                            <div class="message__text">Привет</div>
+                            <div class="message__time">11:45</div>
+                        </div>
+                        <div class="message message_from">
+                            <div class="message__text">Привет</div>
+                            <div class="message__time">11:45</div>
+                        </div>
+                        <!--                        </div>-->
                     </div>
                 </div>
             </div>
         </div>
         <div class="input-block">
             <div class="input-block__in">
-                <div class="input-block__pin">pin</div>
-                {{{messageInput}}}
-                <div class="input-block__btn">btn</div>
+                <div class="input-block__pin">{{{pinIcon}}}</div>
+                <div class="input-block__input">{{{messageInput}}}</div>
+                <div class="input-block__btn">{{{sendIcon}}}</div>
             </div>
         </div>
     </div>

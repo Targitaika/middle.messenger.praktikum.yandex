@@ -4,6 +4,9 @@ import './chat.css';
 import {Field} from "../../components/field";
 import {ChatItem} from "./chatItem/chatItem";
 import {SearchIcon} from "../../components/icons/search";
+import {MessageTikIcon} from "../../components/icons/messageTik";
+import {MessageSendIcon} from "../../components/icons/messageSend";
+import {MessagePinIcon} from "../../components/icons/messagePin";
 
 const tempData = {
     chatList: [{
@@ -34,9 +37,12 @@ Handlebars.registerHelper("listHelper", function (arr) {
 
 const info = (data) => {
     return tmpl({
+        pinIcon: MessagePinIcon(),
+        sendIcon: MessageSendIcon(),
+        tikIcon: MessageTikIcon(),
         chatList: tempData.chatList,
         searchInput: Field({name: 'search', label: '', placeholder: 'Поиск', type: 'search', icon: SearchIcon}),
-        messageInput: Field({name: 'message', label: '', placeholder: 'Отправить'}),
+        messageInput: Field({name: 'message', label: '', placeholder: 'Отправить', type: 'send-message'}),
     })
 }
 

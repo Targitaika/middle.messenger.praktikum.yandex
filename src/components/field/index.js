@@ -1,6 +1,7 @@
 import Handlebars from "handlebars";
 import tmpl from './field.hbs';
 import './field.css';
+import {ChatItem} from "../../pages/chat/chatItem/chatItem";
 
 const field = (name, label, placeholder = "", type = 'text', icon = "") => {
     let customStyles = '';
@@ -20,6 +21,16 @@ const field = (name, label, placeholder = "", type = 'text', icon = "") => {
         label = '';
         customStyles = 'search-input';
     }
+    if (type === 'send-message') {
+        type = 'text';
+        label = '';
+        customStyles = 'send-message';
+    }
+    Handlebars.registerHelper("labelShow", function (name, label) {
+        if (label.length) {
+            return new Handlebars.SafeString("<label class='label' for='" + name + "'>" + label + "</label>");
+        }
+    });
     return tmpl({
         name: name,
         label: label,

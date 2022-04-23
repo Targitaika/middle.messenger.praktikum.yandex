@@ -1,13 +1,15 @@
 .item {
     margin-bottom: 16px;
+    position: relative;
 }
 
 .item:last-child {
     margin-bottom: 0;
 }
 
+
 .label {
-    height: 9px;
+    height: auto;
     font-family: 'Inter';
     font-weight: 500;
     font-size: 9px;
@@ -15,6 +17,14 @@
     display: block;
     margin-bottom: 8px;
     color: #999999;
+}
+
+.field-icon {
+    width: 15px;
+    height: 10px;
+    position: absolute;
+    right: 10px;
+    top: calc(50% - 5px);
 }
 
 .input {
@@ -29,4 +39,21 @@
     line-height: 13px;
     color: #1E1E1E;
     outline: none;
+}
+
+.search-input .input {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: #EFEFEF;
+    border: none;
+    padding: 10px;
+    outline: none;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+    color: #999999;
+    border-radius: 5px;
 }

@@ -2,8 +2,7 @@ import Handlebars from "handlebars";
 import tmpl from './field.hbs';
 import './field.css';
 
-const field = (name, label, placeholder = "", type = 'text') => {
-    let icon = '';
+const field = (name, label, placeholder = "", type = 'text', icon = "") => {
     let customStyles = '';
 
     if (label === undefined) {
@@ -18,7 +17,6 @@ const field = (name, label, placeholder = "", type = 'text') => {
 
     if (type === 'search') {
         type = 'text';
-        icon = 'Icon';
         label = '';
         customStyles = 'search-input';
     }
@@ -32,6 +30,6 @@ const field = (name, label, placeholder = "", type = 'text') => {
     })
 }
 export const Field = (data) => {
-    const template = Handlebars.compile(field(data.name, data.label, data.placeholder, data.type));
+    const template = Handlebars.compile(field(data.name, data.label, data.placeholder, data.type, data.icon));
     return template({data})
 }

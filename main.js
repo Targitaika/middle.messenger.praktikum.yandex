@@ -1,4 +1,3 @@
-// import {homePage} from './src/pages/home';
 import {Login} from './src/pages/home/modules/login';
 import {Signin} from './src/pages/home/modules/signin';
 import {Error404} from "./src/pages/error/404";

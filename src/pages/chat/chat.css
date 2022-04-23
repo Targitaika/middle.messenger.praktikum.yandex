@@ -20,6 +20,7 @@ body {
 
 .chat-right-block {
     flex-basis: 76%;
+    padding: 0 20px;
 }
 
 .link-block__a {
@@ -56,4 +57,138 @@ body {
     line-height: 12px;
     color: #999999;
     border-radius: 5px;
+}
+
+.list-block {
+    padding: 0;
+    margin: 0;
+}
+
+.list-block__item {
+    list-style: none;
+    padding: 0;
+}
+
+.list-block__item:first-child .chat-item {
+    border-top: 1px solid #EAEAEA;
+}
+
+.chat-item {
+    margin: 0 10px;
+    border-bottom: 1px solid #EAEAEA;
+    padding-top: 10px;
+    padding-bottom: 12px;
+    height: 73px;
+}
+
+.chat-item__in {
+    height: 100%;
+    position: relative;
+    padding-right: 30px;
+    display: flex;
+}
+
+.chat-item__left {
+    width: 47px;
+    height: 47px;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.chat-item__right {
+}
+
+.chat-item__name {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 13px;
+    color: #1E1E1E;
+    margin-bottom: 4px;
+}
+
+.chat-item__text {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    color: #999999;
+}
+
+.chat-item__abs {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.chat-item__time {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 9px;
+    line-height: 13px;
+    color: #999999;
+}
+
+.chat-item__unread {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 12px;
+    background: #3369F3;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.head-block {
+}
+
+.head-block__in {
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+}
+
+.head-block__img {
+    height: 34px;
+    width: 34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: #EFEFEF;
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+.head-block__name {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 13px;
+    color: #1E1E1E;
+}
+
+.head-block__settings {
+    margin-left: auto;
+    transform: rotate(90deg);
+    font-size: 30px;
+    cursor: pointer;
 }

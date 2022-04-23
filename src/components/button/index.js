@@ -9,6 +9,7 @@ const button = (data) => {
     return tmpl({
         className: data.className,
         text: data.text,
+        onclick: data.onclick,
     })
 }
 

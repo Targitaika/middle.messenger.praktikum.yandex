@@ -6,7 +6,7 @@ import {Field} from "../../../../components/field";
 
 const fieldList = [{
     label: 'Почта',
-    name: 'mail',
+    name: 'email',
     placeholder: 'pochta@yandex.ru',
 }, {
     label: 'Логин',
@@ -14,11 +14,11 @@ const fieldList = [{
     placeholder: 'ivanivanov',
 }, {
     label: 'Имя',
-    name: 'name',
+    name: 'first_name',
     placeholder: 'Иван',
 }, {
     label: 'Фамилия',
-    name: 'surname',
+    name: 'second_name',
     placeholder: 'Иванов',
 }, {
     label: 'Телефон',

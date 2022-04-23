@@ -74,3 +74,35 @@
     color: #999999;
     border-radius: 30px;
 }
+
+
+.input_profile {
+    padding: 10px 0;
+    border-bottom: 1px solid #EAEAEA;
+    display: flex;
+}
+
+.input_profile:last-child {
+    border-bottom: 0;
+}
+
+.input_profile .label {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+    color: #1E1E1E;
+    width: 30%;
+}
+
+.input_profile .input {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+    color: #999999;
+    text-align: right;
+    border-bottom: none;
+}

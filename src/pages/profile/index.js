@@ -2,34 +2,46 @@ import Handlebars from "handlebars";
 import tmpl from './profile.hbs';
 import './profile.css';
 import {Button} from "../../components/button";
-import {ProfileListItem} from "./profileListItem";
+import {Field} from "../../components/field";
 
 const list = [{
-    name: "Почта",
+    label: "Почта",
+    name: "email",
     text: "pochta@yandex.ru",
+    type: "input_profile",
 }, {
-    name: "Логин",
+    label: "Логин",
+    name: "login",
     text: "ivanivanov",
+    type: "input_profile",
 }, {
-    name: "Имя",
+    label: "Имя",
+    name: "first_name",
     text: "Иван",
+    type: "input_profile",
 }, {
-    name: "Фамилия",
+    label: "Фамилия",
+    name: "second_name",
     text: "Иванов",
+    type: "input_profile",
 }, {
-    name: "Имя в чате",
+    label: "Имя в чате",
+    name: "display_name",
     text: "Иван",
+    type: "input_profile",
 }, {
-    name: "Телефон",
+    label: "Телефон",
+    name: "phone",
     text: "+7 (909) 967 30 30",
+    type: "input_profile",
 },];
 
 Handlebars.registerHelper("listHelper", function (arr) {
     return arr.reduce((prev, item) => {
         if (typeof prev === 'object') {
-            prev = ProfileListItem(prev) + ProfileListItem(item);
+            prev = Field(prev) + Field(item);
         } else {
-            prev = prev + ProfileListItem(item);
+            prev = prev + Field(item);
         }
         return prev
     })

@@ -9,5 +9,6 @@ const error500 = {
 
 export const Error500 = (data) => {
   const template = Handlebars.compile(ErrorLayout(error500));
+
   return template({ data });
 };

@@ -51,6 +51,7 @@ Handlebars.registerHelper("fieldListHelper", function (arr) {
     } else {
       prev = Field(item);
     }
+
     return prev;
   });
 });
@@ -64,5 +65,6 @@ const signin = tmpl({
 });
 export const Signin = (data) => {
   const template = Handlebars.compile(signin);
+
   return template({ data });
 };

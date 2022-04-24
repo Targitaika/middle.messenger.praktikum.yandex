@@ -9,5 +9,6 @@ const error404 = {
 
 export const Error404 = (data) => {
   const template = Handlebars.compile(ErrorLayout(error404));
+
   return template({ data });
 };

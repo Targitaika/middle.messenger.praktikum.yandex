@@ -15,5 +15,6 @@ export const ErrorLayout = (data) => {
   const template = Handlebars.compile(
     errorData(data.title, data.text, data.link, data.linkText)
   );
+
   return template({ data });
 };

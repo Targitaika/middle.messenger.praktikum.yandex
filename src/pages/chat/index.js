@@ -1,12 +1,12 @@
 import Handlebars from "handlebars";
 import tmpl from "./chat.hbs";
 import "./chat.css";
-import { Field } from "../../components/field";
-import { ChatItem } from "./chatItem/chatItem";
-import { SearchIcon } from "../../components/icons/search";
-import { MessageTikIcon } from "../../components/icons/messageTik";
-import { MessageSendIcon } from "../../components/icons/messageSend";
-import { MessagePinIcon } from "../../components/icons/messagePin";
+import {Field} from "../../components/field";
+import {ChatItem} from "./chatItem/chatItem";
+import {SearchIcon} from "../../components/icons/search";
+import {MessageTikIcon} from "../../components/icons/messageTik";
+import {MessageSendIcon} from "../../components/icons/messageSend";
+import {MessagePinIcon} from "../../components/icons/messagePin";
 
 const tempData = {
   chatList: [
@@ -34,6 +34,7 @@ Handlebars.registerHelper("listHelper", function (arr) {
     } else {
       prev = prev + ChatItem(item);
     }
+
     return prev;
   });
 });
@@ -62,5 +63,6 @@ const info = (data) => {
 
 export const Chat = (data) => {
   const template = Handlebars.compile(info(data));
-  return template({ data });
+
+  return template({data});
 };

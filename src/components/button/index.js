@@ -16,5 +16,6 @@ const button = (data) => {
 
 export const Button = (data) => {
   const template = Handlebars.compile(button(data));
+
   return template({ data });
 };

@@ -99,6 +99,7 @@ Handlebars.registerHelper("listHelper", function (arr) {
     } else {
       prev = prev + Field(item);
     }
+
     return prev;
   });
 });
@@ -106,12 +107,14 @@ Handlebars.registerHelper("listHelper", function (arr) {
 Handlebars.registerHelper("btnsHelper", function (arr) {
   const safeString = (x) =>
     new Handlebars.SafeString("<div class='profile-page__btn'>" + x + "</div>");
+
   return arr.reduce((prev, item) => {
     if (typeof prev === "object") {
       prev = safeString(Button(prev)) + safeString(Button(item));
     } else {
       prev = prev + safeString(Button(item));
     }
+
     return prev;
   });
 });

@@ -18,5 +18,6 @@ const login = tmpl({
 });
 export const Login = (data) => {
   const template = Handlebars.compile(login);
+
   return template({ data });
 };

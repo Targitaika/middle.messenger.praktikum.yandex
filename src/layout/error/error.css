@@ -6,8 +6,8 @@
 .error-layout_h {
     font-style: normal;
     font-weight: 500;
-    font-size: 40px;
-    line-height: 40px;
+    font-size: 3rem;
+    line-height: 3rem;
     text-align: center;
     color: var(--color-black-1);
     margin-bottom: 20px;
@@ -26,8 +26,8 @@
 .error-layout_text {
     font-style: normal;
     font-weight: 500;
-    font-size: 20px;
-    line-height: 20px;
+    font-size: 1.5rem;
+    line-height: 1.5rem;
     text-align: center;
     color: var(--color-black-1);
     margin-bottom: 70px;
@@ -36,8 +36,8 @@
 .error-layout_link {
     font-style: normal;
     font-weight: 500;
-    font-size: 11px;
-    line-height: 11px;
+    font-size: .85rem;
+    line-height: .85rem;
     text-align: center;
     color: var(--color-blue-1);
     text-decoration: none;

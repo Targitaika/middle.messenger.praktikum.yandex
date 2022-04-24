@@ -28,8 +28,8 @@ body {
     width: 27px;
     height: 9px;
     font-weight: 500;
-    font-size: 9px;
-    line-height: 9px;
+    font-size: .7rem;
+    line-height: .7rem;
     display: block;
     margin-bottom: 8px;
     color: var(--color-grey-1);
@@ -42,8 +42,8 @@ body {
     border: 0px;
     border-bottom: 1px solid var(--color-blue-1);
     font-weight: 500;
-    font-size: 13px;
-    line-height: 13px;
+    font-size: 1rem;
+    line-heigh: 1rem;
     color: var(--color-black-1);
     outline: none;
 }
@@ -56,16 +56,16 @@ body {
     height: 20px;
     margin: 0 auto 40px;
     font-weight: 500;
-    font-size: 20px;
-    line-height: 20px;
+    font-size: 1.5rem;
+    line-height: 1.5rem;
     text-align: center;
     color: var(--color-black-1);
 }
 
 .link {
     font-weight: 500;
-    font-size: 11px;
-    line-height: 11px;
+    font-size: .85rem;
+    line-height: .85rem;
     color: var(--color-blue-1);
     text-decoration: none;
     width: 100%;

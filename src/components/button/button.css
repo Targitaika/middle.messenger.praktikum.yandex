@@ -1,10 +1,14 @@
+.button:hover {
+    opacity: .8;
+}
+
 .regular {
     background: var(--color-blue-1);
     border-radius: 8px;
     font-style: normal;
     font-weight: 500;
-    font-size: 13px;
-    line-height: 13px;
+    font-size: 1rem;
+    line-heigh: 1rem;
     text-align: center;
     width: 100%;
     padding: 12px;
@@ -13,11 +17,12 @@
     cursor: pointer;
 }
 
+
 .btn_text {
     font-style: normal;
     font-weight: 500;
-    font-size: 13px;
-    line-height: 13px;
+    font-size: 1rem;
+    line-heigh: 1rem;
     color: var(--color-blue-1);
     border: none;
     background: none;

@@ -22,8 +22,8 @@
 .profile-page__name {
     font-style: normal;
     font-weight: 600;
-    font-size: 16px;
-    line-height: 16px;
+    font-size: 1.25rem;
+    line-height: 1.25rem;
     color: var(--color-black-1);
     text-align: center;
     margin-bottom: 60px;

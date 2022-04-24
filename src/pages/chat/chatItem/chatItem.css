@@ -29,8 +29,8 @@
 .chat-item__name {
     font-style: normal;
     font-weight: 600;
-    font-size: 13px;
-    line-height: 13px;
+    font-size: 1rem;
+    line-heigh: 1rem;
     color: var(--color-black-1);
     margin-bottom: 4px;
 }
@@ -38,8 +38,8 @@
 .chat-item__text {
     font-style: normal;
     font-weight: 500;
-    font-size: 12px;
-    line-height: 15px;
+    font-size: .9rem;
+    line-height: .9rem;
     color: var(--color-grey-1);
 }
 
@@ -56,16 +56,16 @@
 .chat-item__time {
     font-style: normal;
     font-weight: 500;
-    font-size: 9px;
-    line-height: 13px;
+    font-size: .7rem;
+    line-heigh: 1rem;
     color: var(--color-grey-1);
 }
 
 .chat-item__unread {
     font-style: normal;
     font-weight: 500;
-    font-size: 11px;
-    line-height: 12px;
+    font-size: .85rem;
+    line-height: .85rem;
     background: var(--color-blue-1);
     width: 20px;
     height: 20px;
@@ -80,8 +80,8 @@
 .empty-block {
     font-style: normal;
     font-weight: 500;
-    font-size: 12px;
-    line-height: 12px;
+    font-size: .9rem;
+    line-height: .9rem;
     text-align: center;
     color: var(--color-grey-1);
 }

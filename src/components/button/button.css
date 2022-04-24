@@ -1,7 +1,6 @@
 .regular {
-    background: #3369F3;
+    background: var(--color-blue-1);
     border-radius: 8px;
-    font-family: 'Inter';
     font-style: normal;
     font-weight: 500;
     font-size: 13px;
@@ -9,18 +8,17 @@
     text-align: center;
     width: 100%;
     padding: 12px;
-    color: #FFFFFF;
+    color: var(--color-white-3);
     border: none;
     cursor: pointer;
 }
 
 .btn_text {
-    font-family: 'Inter';
     font-style: normal;
     font-weight: 500;
     font-size: 13px;
     line-height: 13px;
-    color: #3369F3;
+    color: var(--color-blue-1);
     border: none;
     background: none;
     outline: none;
@@ -30,5 +28,5 @@
 }
 
 .btn_red {
-    color: #FF0000;
+    color: var(--color-red-1);
 }

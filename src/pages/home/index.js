@@ -1,4 +1,8 @@
-export default function homePage() {
-  console.log("HomePage");
-  return console.log("HomePage");
+import Handlebars from "handlebars";
+import tmpl from "./home.hbs";
+import "./home.css";
+
+export function Home(data) {
+  const template = Handlebars.compile(tmpl());
+  return template({ data });
 }

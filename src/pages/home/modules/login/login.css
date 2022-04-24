@@ -13,7 +13,7 @@ body {
 .block {
     width: 340px;
     height: 450px;
-    background: #FFFFFF;
+    background: var(--color-white-3);
     box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.14);
     border-radius: 12px;
     margin: 0 auto;
@@ -27,27 +27,24 @@ body {
 .form__label {
     width: 27px;
     height: 9px;
-    font-family: 'Inter';
     font-weight: 500;
     font-size: 9px;
     line-height: 9px;
     display: block;
     margin-bottom: 8px;
-    color: #999999;
+    color: var(--color-grey-1);
 }
 
 .form_text-input {
-    width: 67px;
     height: 13px;
     padding: 7px 0;
     width: 100%;
     border: 0px;
-    border-bottom: 1px solid #3369F3;
-    font-family: 'Inter';
+    border-bottom: 1px solid var(--color-blue-1);
     font-weight: 500;
     font-size: 13px;
     line-height: 13px;
-    color: #1E1E1E;
+    color: var(--color-black-1);
     outline: none;
 }
 
@@ -58,20 +55,18 @@ body {
 .h1 {
     height: 20px;
     margin: 0 auto 40px;
-    font-family: 'Inter';
     font-weight: 500;
     font-size: 20px;
     line-height: 20px;
     text-align: center;
-    color: #1E1E1E;
+    color: var(--color-black-1);
 }
 
 .link {
-    font-family: 'Inter';
     font-weight: 500;
     font-size: 11px;
     line-height: 11px;
-    color: #3369F3;
+    color: var(--color-blue-1);
     text-decoration: none;
     width: 100%;
     text-align: center;

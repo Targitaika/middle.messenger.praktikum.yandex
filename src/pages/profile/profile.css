@@ -11,7 +11,6 @@
 }
 
 .profile-page__img {
-    width: 130px;
     height: 130px;
     display: flex;
     justify-content: center;
@@ -21,12 +20,11 @@
 }
 
 .profile-page__name {
-    font-family: 'Inter';
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
     line-height: 16px;
-    color: #1E1E1E;
+    color: var(--color-black-1);
     text-align: center;
     margin-bottom: 60px;
 }
@@ -46,7 +44,7 @@
 
 .profile-page__btn {
     padding: 10px 0;
-    border-bottom: 1px solid #EAEAEA;
+    border-bottom: 1px solid var(--color-white-2);
 }
 
 .profile-page__btn:last-child {

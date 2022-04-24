@@ -6,6 +6,7 @@ const button = (data) => {
   if (data.className === undefined) {
     data.className = "regular";
   }
+
   return tmpl({
     className: data.className,
     text: data.text,

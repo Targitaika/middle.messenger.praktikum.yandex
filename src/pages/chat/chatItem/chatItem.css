@@ -1,6 +1,6 @@
 .chat-item {
     margin: 0 10px;
-    border-bottom: 1px solid #EAEAEA;
+    border-bottom: 1px solid var(--color-white-2);
     padding-top: 10px;
     padding-bottom: 12px;
     height: 73px;
@@ -27,22 +27,20 @@
 }
 
 .chat-item__name {
-    font-family: 'Inter';
     font-style: normal;
     font-weight: 600;
     font-size: 13px;
     line-height: 13px;
-    color: #1E1E1E;
+    color: var(--color-black-1);
     margin-bottom: 4px;
 }
 
 .chat-item__text {
-    font-family: 'Inter';
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
     line-height: 15px;
-    color: #999999;
+    color: var(--color-grey-1);
 }
 
 .chat-item__abs {
@@ -56,21 +54,19 @@
 }
 
 .chat-item__time {
-    font-family: 'Inter';
     font-style: normal;
     font-weight: 500;
     font-size: 9px;
     line-height: 13px;
-    color: #999999;
+    color: var(--color-grey-1);
 }
 
 .chat-item__unread {
-    font-family: 'Inter';
     font-style: normal;
     font-weight: 500;
     font-size: 11px;
     line-height: 12px;
-    background: #3369F3;
+    background: var(--color-blue-1);
     width: 20px;
     height: 20px;
     border-radius: 50%;
@@ -78,15 +74,14 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    color: #FFFFFF;
+    color: var(--color-white-3);
 }
 
 .empty-block {
-    font-family: 'Inter';
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
     line-height: 12px;
     text-align: center;
-    color: #999999;
+    color: var(--color-grey-1);
 }

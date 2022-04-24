@@ -29,14 +29,13 @@
     margin-bottom: 60px;
 }
 
-.profile-page__img > input {
+.profile-page__img > .profile-page__img-input {
     width: 100%;
     max-width: 130px;
     height: 100%;
     overflow: hidden;
     outline: none;
     border-radius: 50%;
-
 }
 
 .profile-page__field {

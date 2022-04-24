@@ -16,6 +16,6 @@ const ProfilePage = Profile();
 
 const renderDOM = () => {
   const root = document.getElementById("root");
-  root.innerHTML = ProfilePage;
+  root.innerHTML = ChatPage;
 };
 renderDOM();

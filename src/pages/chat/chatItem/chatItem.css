@@ -30,7 +30,7 @@
     font-style: normal;
     font-weight: 600;
     font-size: 1rem;
-    line-heigh: 1rem;
+    line-height: 1rem;
     color: var(--color-black-1);
     margin-bottom: 4px;
 }
@@ -57,7 +57,7 @@
     font-style: normal;
     font-weight: 500;
     font-size: .7rem;
-    line-heigh: 1rem;
+    line-height: 1rem;
     color: var(--color-grey-1);
 }
 

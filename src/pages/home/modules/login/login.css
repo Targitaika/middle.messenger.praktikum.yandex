@@ -43,7 +43,7 @@ body {
     border-bottom: 1px solid var(--color-blue-1);
     font-weight: 500;
     font-size: 1rem;
-    line-heigh: 1rem;
+    line-height: 1rem;
     color: var(--color-black-1);
     outline: none;
 }

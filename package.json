@@ -19,7 +19,8 @@
   "homepage": "https://github.com/Targitaika/middle.messenger.praktikum.yandex/tree/sprint_1#readme",
   "devDependencies": {
     "parcel": "^2.4.1",
-    "parcel-transformer-hbs": "^1.0.4"
+    "parcel-transformer-hbs": "^1.0.4",
+    "prettier": "^2.6.2"
   },
   "dependencies": {
     "express": "^4.17.3",

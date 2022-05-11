@@ -9,10 +9,10 @@ const field = (
   type = "text",
   icon = "",
   value = "",
-  readonly = false
+  isReadonly = false
 ) => {
   let customStyles = "";
-  readonly = readonly ? "readonly" : "";
+  const readonly = isReadonly ? "readonly" : "";
   if (label === undefined) {
     if (name === undefined) {
       name = "Name";

@@ -4,11 +4,11 @@ import "./chatItem.css";
 
 const info = (name, text, date, unread, src) => {
   return tmpl({
-    name: name,
-    text: text,
-    date: date,
-    unread: unread,
-    src: src,
+    name,
+    text,
+    date,
+    unread,
+    src,
   });
 };
 

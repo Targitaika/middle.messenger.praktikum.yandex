@@ -4,6 +4,7 @@ export interface chatItemInterface {
   name: string;
   src: string;
   text: string;
+  date: string;
   unread: number;
 }
 

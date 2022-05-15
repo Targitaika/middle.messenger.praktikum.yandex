@@ -3,9 +3,10 @@ import * as Handlebars from "handlebars";
 import tmpl from "./profile.hbs";
 import "./profile.css";
 import { Button } from "../../components/button";
-// import { Field } from "../../components/field";
-import { list } from "./mock";
+import { list as list } from "./mock";
 import buttonInterface from "../../interfaces/buttonInterface";
+import fieldInterface from "../../interfaces/fieldInterface";
+import { Field } from "../../components/field";
 
 const changeDataClick = (x: string): void => {
   console.log("Change data", x);
@@ -22,6 +23,13 @@ const changePasswordClick = (x: string): void => {
 const logoutClick = (x: string): void => {
   console.log("logout", x);
 };
+
+Handlebars.registerHelper(
+  "fieldListHelper",
+  function (arr: Array<fieldInterface>) {
+    return arr.map((item) => Field(item)).reduce((prev, item) => prev + item);
+  }
+);
 
 const buttonsListChange = [
   { text: "Изменить данные", className: "btn_text", onclick: changeDataClick },
@@ -54,8 +62,8 @@ const info = (): string => {
   });
 };
 
-export const Profile = (data) => {
+export const Profile = () => {
   const template = Handlebars.compile(info());
 
-  return template({ data });
+  return template({});
 };

@@ -1,4 +1,9 @@
-export const list = [
+export const list: {
+  name: string;
+  label: string;
+  text: string;
+  type: string;
+}[] = [
   {
     label: "Почта",
     name: "email",
@@ -37,7 +42,12 @@ export const list = [
   },
 ];
 
-export const passwordList = [
+export const passwordList: {
+  name: string;
+  label: string;
+  text: string;
+  type: string;
+}[] = [
   {
     label: "Почта",
     name: "email",

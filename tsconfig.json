@@ -5,9 +5,9 @@
     "target": "es2016",
     "declaration": false,
     "module": "commonjs",
-    "strictNullChecks": false,
+    "strictNullChecks": true,
     "sourceMap": true,
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true
   }

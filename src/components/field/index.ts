@@ -9,7 +9,7 @@ const field = (
   label: string = "",
   placeholder: string = "",
   type: string = "text",
-  icon: () => string = null,
+  icon: () => string = () => "",
   value: string = "",
   isReadonly: boolean = false
 ): string => {
@@ -49,7 +49,6 @@ const field = (
       }
     }
   );
-  console.log("icon", icon);
   return tmpl({
     name: name,
     label: label,

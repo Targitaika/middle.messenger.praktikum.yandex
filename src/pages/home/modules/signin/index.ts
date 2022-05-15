@@ -5,7 +5,7 @@ import "./signin.css";
 import { Button } from "../../../../components/button";
 import { Field } from "../../../../components/field";
 import fieldInterface from "../../../../interfaces/fieldInterface";
-import { fieldList } from "./mock.js";
+import { fieldList } from "./mock";
 
 Handlebars.registerHelper(
   "fieldListHelper",
@@ -21,8 +21,8 @@ const signin: string = tmpl({
   linkText: "Войти",
   btn: Button({ className: "regular", text: "Зарегистрироваться" }),
 });
-export const Signin = (data): string => {
+export const Signin = (): string => {
   const template = Handlebars.compile(signin);
 
-  return template({ data });
+  return template({});
 };

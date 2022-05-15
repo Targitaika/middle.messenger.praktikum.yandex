@@ -17,8 +17,8 @@ const login = tmpl({
   noAccountText: "Нет аккаунта?",
   btn: Button({ className: "regular", text: "Вход" }),
 });
-export const Login = (data) => {
+export const Login = () => {
   const template = Handlebars.compile(login);
 
-  return template({ data });
+  return template({});
 };

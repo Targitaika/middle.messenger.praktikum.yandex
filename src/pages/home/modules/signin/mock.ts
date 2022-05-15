@@ -1,4 +1,9 @@
-export const fieldList = [
+export const fieldList: {
+  label: string;
+  name: string;
+  placeholder: string;
+  type?: string;
+}[] = [
   {
     label: "Почта",
     name: "email",

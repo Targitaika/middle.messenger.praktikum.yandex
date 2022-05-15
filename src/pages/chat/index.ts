@@ -8,7 +8,7 @@ import { SearchIcon } from "../../components/icons/search";
 import { MessageTikIcon } from "../../components/icons/messageTik";
 import { MessageSendIcon } from "../../components/icons/messageSend";
 import { MessagePinIcon } from "../../components/icons/messagePin";
-import { tempData } from "./mock";
+import { chatList as chatList } from "./mock";
 import {
   chatItemInterface,
   infoInterface,
@@ -28,7 +28,7 @@ const info = (): (() => infoInterface) => {
     pinIcon: MessagePinIcon,
     sendIcon: MessageSendIcon,
     tikIcon: MessageTikIcon,
-    chatList: tempData.chatList,
+    chatList: chatList,
     searchInput: Field({
       name: "search",
       label: "",
@@ -44,8 +44,8 @@ const info = (): (() => infoInterface) => {
     }),
   });
 };
-export const Chat = (data: any): string => {
+export const Chat = (): string => {
   const template = Handlebars.compile(info());
 
-  return template({ data });
+  return template({});
 };

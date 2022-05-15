@@ -1,5 +1,6 @@
 import * as Handlebars from "handlebars";
 import { ErrorLayout } from "../../layout/error";
+import errorInterface from "../../interfaces/errorInterface";
 
 const error500 = {
   title: "500",
@@ -7,7 +8,7 @@ const error500 = {
   linkText: "Назад к чатам",
 };
 
-export const Error500 = (data) => {
+export const Error500 = (data: errorInterface): string => {
   const template = Handlebars.compile(ErrorLayout(error500));
 
   return template({ data });

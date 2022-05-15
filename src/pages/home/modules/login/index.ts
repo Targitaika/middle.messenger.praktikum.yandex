@@ -1,4 +1,5 @@
 import * as Handlebars from "handlebars";
+// @ts-ignore
 import tmpl from "./login.hbs";
 import "./login.css";
 import { Button } from "../../../../components/button";

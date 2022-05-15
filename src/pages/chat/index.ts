@@ -1,4 +1,5 @@
 import * as Handlebars from "handlebars";
+// @ts-ignore
 import tmpl from "./chat.hbs";
 import "./chat.css";
 import { Field } from "../../components/field";
@@ -8,30 +9,10 @@ import { MessageTikIcon } from "../../components/icons/messageTik";
 import { MessageSendIcon } from "../../components/icons/messageSend";
 import { MessagePinIcon } from "../../components/icons/messagePin";
 import { tempData } from "./mock";
-
-interface chatItemInterface {
-  name: string;
-  src: string;
-  text: string;
-  unread: number;
-}
-
-interface fieldInterface {
-  name: string;
-  label: string;
-  placeholder: string;
-  type: string | null;
-  icon: () => string;
-}
-
-interface infoInterface {
-  pinIcon: () => string;
-  sendIcon: () => string;
-  tikIcon: () => string;
-  chatList: Array<chatItemInterface>;
-  searchInput: (arg0: fieldInterface) => string;
-  messageInput: (arg0: fieldInterface) => string;
-}
+import {
+  chatItemInterface,
+  infoInterface,
+} from "../../interfaces/chatInterfaces";
 
 Handlebars.registerHelper(
   "chatListHelper",
@@ -42,11 +23,11 @@ Handlebars.registerHelper(
   }
 );
 
-const info = (): (() => string) => {
+const info = (): (() => infoInterface) => {
   return tmpl({
-    pinIcon: MessagePinIcon(),
-    sendIcon: MessageSendIcon(),
-    tikIcon: MessageTikIcon(),
+    pinIcon: MessagePinIcon,
+    sendIcon: MessageSendIcon,
+    tikIcon: MessageTikIcon,
     chatList: tempData.chatList,
     searchInput: Field({
       name: "search",
@@ -63,7 +44,8 @@ const info = (): (() => string) => {
     }),
   });
 };
-export const Chat = (data: any) => {
+export const Chat = (data: any): string => {
   const template = Handlebars.compile(info());
+
   return template({ data });
 };

@@ -1,16 +1,18 @@
 import * as Handlebars from "handlebars";
+// @ts-ignore
 import tmpl from "./field.hbs";
 import "./field.css";
+import fieldInterface from "../../interfaces/fieldInterface";
 
 const field = (
-  name,
-  label,
-  placeholder = "",
-  type = "text",
-  icon = "",
-  value = "",
-  isReadonly = false
-) => {
+  name: string = "",
+  label: string = "",
+  placeholder: string = "",
+  type: string = "text",
+  icon: () => string = null,
+  value: string = "",
+  isReadonly: boolean = false
+): string => {
   let customStyles = "";
   const readonly = isReadonly ? "readonly" : "";
   if (label === undefined) {
@@ -37,14 +39,17 @@ const field = (
     type = "text";
     customStyles = "input_profile";
   }
-  Handlebars.registerHelper("labelShow", function (name, label) {
-    if (label.length) {
-      return new Handlebars.SafeString(
-        "<label class='label' for='" + name + "'>" + label + "</label>"
-      );
+  Handlebars.registerHelper(
+    "labelShow",
+    function (name: string, label: string) {
+      if (label.length) {
+        return new Handlebars.SafeString(
+          "<label class='label' for='" + name + "'>" + label + "</label>"
+        );
+      }
     }
-  });
-
+  );
+  console.log("icon", icon);
   return tmpl({
     name: name,
     label: label,
@@ -56,7 +61,8 @@ const field = (
     readonly: readonly,
   });
 };
-export const Field = (data) => {
+
+export const Field = (data: fieldInterface) => {
   const template = Handlebars.compile(
     field(
       data.name,
@@ -64,8 +70,8 @@ export const Field = (data) => {
       data.placeholder,
       data.type,
       data.icon,
-      data.text,
-      data.readonly
+      data.value,
+      data.isReadonly
     )
   );
 

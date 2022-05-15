@@ -1,8 +1,9 @@
 import * as Handlebars from "handlebars";
+// @ts-ignore
 import tmpl from "./index.hbs";
 
-export const MessageSendIcon = (data) => {
-  const template = Handlebars.compile(tmpl(data));
+export const MessagePinIcon = (data) => {
+  const template = Handlebars.compile(tmpl());
 
   return template({ data });
 };

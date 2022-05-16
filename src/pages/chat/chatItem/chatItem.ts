@@ -21,7 +21,7 @@ const info = (
 };
 
 export const ChatItem = (data: chatItemInterface): string => {
-  console.log(data);
+  // console.log(data);
   const template = Handlebars.compile(
     info(data.name, data.text, data.date, data.unread, data.src)
   );

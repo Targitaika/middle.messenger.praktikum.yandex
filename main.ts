@@ -2,7 +2,9 @@
 // import { Signin } from "./src/pages/home/modules/signin";
 // import { Error404 } from "./src/pages/error/404";
 // import { Error500 } from "./src/pages/error/500";
-import { Chat } from "./src/pages/chat";
+// import { Chat } from "./src/pages/chat";
+import { renderDOM } from "./src/services/renderDOM";
+import { ChatPage } from "./src/pages/chat/chat";
 // import { Profile } from "./src/pages/profile";
 // import { Home } from "./src/pages/home";
 
@@ -11,11 +13,10 @@ import { Chat } from "./src/pages/chat";
 // const SigninPage = Signin();
 // const Error404Page = Error404();
 // const Error500Page = Error500();
-const ChatPage = Chat();
+// const ChatPage = Chat();
 // const ProfilePage = Profile();
+document.addEventListener("DOMContentLoaded", () => {
+  const chatPage = new ChatPage({ buttonText: "Кнопушка" });
 
-const renderDOM = () => {
-  const root: HTMLElement | null = document.getElementById("root");
-  root ? (root.innerHTML = ChatPage) : root;
-};
-renderDOM();
+  renderDOM("#root", chatPage);
+});

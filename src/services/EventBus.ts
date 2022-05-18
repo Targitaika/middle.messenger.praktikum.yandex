@@ -9,7 +9,6 @@ export default class EventBus {
 
   public on(event: string, callback: Handler): void {
     if (!this.listeners[event]) {
-      console.log(this.listeners[event]);
       this.listeners[event] = [];
     }
 
@@ -20,6 +19,7 @@ export default class EventBus {
     if (!this.listeners[event]) {
       // throw new Error(`Нет события: ${event}`);
       console.log(`Нет события: ${event}`);
+      return;
     }
 
     this.listeners[event] = this.listeners[event].filter(

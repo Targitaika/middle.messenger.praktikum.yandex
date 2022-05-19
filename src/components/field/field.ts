@@ -6,24 +6,40 @@ import fieldInterface from "../../interfaces/fieldInterface";
 export class Field extends Block {
   constructor(props: fieldInterface) {
     super(props);
+    if (!this.props.customStyles) {
+      this.setProps({ customStyles: "" });
+    }
+    if (!this.props.placeholder) {
+      this.setProps({ placeholder: "" });
+    }
+    if (!this.props.isReadonly) {
+      this.setProps({ isReadonly: false });
+    }
+    if (!this.props.label) {
+      if (!this.props.name) {
+        this.setProps({ name: "Name" });
+      }
+      this.setProps({ label: this.props.name });
+    }
+    switch (this.props.type) {
+      case "search":
+        this.setProps({ type: "text" });
+        this.setProps({ label: "" });
+        this.setProps({ customStyles: "search-input" });
+        break;
+      case "send-message":
+        this.setProps({ type: "text" });
+        this.setProps({ label: "" });
+        this.setProps({ customStyles: "search-input" });
+        break;
+      case "input_profile":
+        this.setProps({ type: "text" });
+        this.setProps({ customStyles: "search-input" });
+        break;
+    }
   }
 
   render() {
     return this.compile(tmpl, { ...this.props });
   }
 }
-
-//<div class="item {{customStyles}}">
-//     <div class="field-icon">
-//         {{{icon}}}
-//     </div>
-//     {{labelShow name label}}
-//     <input
-//             class="input"
-//             id="{{name}}"
-//             name="{{name}}"
-//             placeholder="{{placeholder}}"
-//             type="{{type}}"
-//         {{readonly}}
-//             value="{{value}}">
-// </div>

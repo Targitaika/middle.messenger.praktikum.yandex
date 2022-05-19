@@ -1,14 +1,18 @@
 <div class="profile-page">
     <div class="profile-page__in">
         <div class="profile-page__img">
-            <input class="profile-page__img-input" name="" type="image" src="{{img}}" alt="Аватар с Вашим изображением">
+            <input class="profile-page__img-input" name="" type="image" src="{{profileImg}}"
+                   alt="Аватар с Вашим изображением">
         </div>
         <div class="profile-page__name">Иван</div>
         <div class="profile-page__field-list">
-            {{{fieldListHelper fieldList}}}
+            {{{fields}}}
         </div>
         <div class="profile-page__btns">
-            {{{btnsHelper buttons}}}
+            <div class='profile-page__btn'>{{{saveBtn}}}</div>
+            <div class='profile-page__btn'>{{{changeDataBtn}}}</div>
+            <div class='profile-page__btn'>{{{changePasswordBtn}}}</div>
+            <div class='profile-page__btn'>{{{logOutBtn}}}</div>
         </div>
     </div>
 </div>

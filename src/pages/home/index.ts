@@ -1,5 +1,4 @@
 import * as Handlebars from "handlebars";
-// @ts-ignore
 import tmpl from "./home.hbs";
 import "./home.css";
 

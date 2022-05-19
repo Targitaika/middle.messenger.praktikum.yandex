@@ -1,4 +1,5 @@
 import EventBus from "./EventBus";
+// @ts-ignore
 import { v4 as makeUUID } from "uuid";
 
 export default class Block {
@@ -90,7 +91,6 @@ export default class Block {
   }
 
   componentDidUpdate(oldProps: any, newProps: any) {
-    console.log(oldProps, newProps);
     if (oldProps === newProps) {
       return false;
     }
@@ -189,7 +189,7 @@ export default class Block {
 
     fragment.innerHTML = htmlString;
 
-    Object.entries(this.children).forEach(([key, child]) => {
+    Object.entries(this.children).forEach(([, child]) => {
       const stub = fragment.content.querySelector(`[data-id="id-${child.id}"]`);
       if (!stub) {
         return;

@@ -1,5 +1,5 @@
 import * as Handlebars from "handlebars";
-// @ts-ignore
+
 import tmpl from "./error.hbs";
 import "./error.css";
 import errorInterface from "../../interfaces/errorInterface";

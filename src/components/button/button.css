@@ -26,10 +26,15 @@
     color: var(--color-blue-1);
     border: none;
     background: none;
-    outline: 1px solid var(--color-blue-1);
     cursor: pointer;
     padding: 0;
     margin: 0;
+}
+
+.btn_text:hover,
+.btn_text:focus {
+    outline: 1px solid var(--color-blue-1);
+
 }
 
 .btn_red {

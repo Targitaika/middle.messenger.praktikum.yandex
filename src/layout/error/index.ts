@@ -1,27 +1,22 @@
-import * as Handlebars from "handlebars";
-
 import tmpl from "./error.hbs";
 import "./error.css";
 import errorInterface from "../../interfaces/errorInterface";
+import Block from "../../services/Component";
 
-let errorData = (
-  title: string,
-  text: string,
-  link: string = "#",
-  linkText: string = "Назад к чатам"
-) => {
-  return tmpl({
-    title: title,
-    text: text,
-    link: link,
-    linkText: linkText,
-  });
-};
+export default class ErrorLayout extends Block {
+  constructor(props: errorInterface) {
+    super(props);
+  }
 
-export const ErrorLayout = (data: errorInterface) => {
-  const template = Handlebars.compile(
-    errorData(data.title, data.text, data.link, data.linkText)
-  );
-
-  return template({ data });
-};
+  render() {
+    if (!this.props.link) {
+      this.setProps({ link: "#" });
+    }
+    if (!this.props.linkText) {
+      this.setProps({ linkText: "Назад к чатам" });
+    }
+    return this.compile(tmpl, {
+      ...this.props,
+    });
+  }
+}

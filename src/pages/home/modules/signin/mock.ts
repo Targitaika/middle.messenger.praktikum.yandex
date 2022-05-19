@@ -3,6 +3,10 @@ export const fieldList: {
   name: string;
   placeholder: string;
   type?: string;
+  events?: {
+    click?: () => void;
+    keydown?: (arg0: any, arg1: any) => void;
+  };
 }[] = [
   {
     label: "Почта",
@@ -13,6 +17,10 @@ export const fieldList: {
     label: "Логин",
     name: "login",
     placeholder: "ivanivanov",
+    events: {
+      keydown: () => console.log(this),
+      // current.setProps({ form: { name: x.target.value } }),
+    },
   },
   {
     label: "Имя",

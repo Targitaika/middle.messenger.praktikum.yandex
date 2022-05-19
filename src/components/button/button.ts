@@ -4,9 +4,10 @@ import "./button.css";
 
 interface ButtonProps {
   text: string;
+  type?: string;
   className?: "regular" | "btn_text" | "btn_red" | string;
   events?: {
-    click?: () => void;
+    click?: (arg0?: any) => void;
   };
 }
 
@@ -15,6 +16,9 @@ export class Button extends Block {
     super(props);
     if (!this.props.className) {
       this.setProps({ className: "regular" });
+    }
+    if (!this.props.type) {
+      this.setProps({ type: "button" });
     }
   }
 

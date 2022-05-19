@@ -9,7 +9,7 @@ import { Home } from "./src/pages/home";
 
 document.addEventListener("DOMContentLoaded", () => {
   const chatPage = new ChatPage({});
-  const HomePage = Home();
+  const HomePage = Home({});
   const loginPage = new Login({});
   const SigninPage = new Signin({});
   const Error404Page = Error404;
@@ -25,5 +25,5 @@ document.addEventListener("DOMContentLoaded", () => {
     !!ProfilePage
   );
 
-  renderDOM("#root", Error500Page);
+  renderDOM("#root", ProfilePage);
 });

@@ -163,6 +163,8 @@ export default class Block {
     if (!events) {
       return;
     }
+    // console.log("events", this, events);
+
     Object.entries(events).forEach(([event, listener]) => {
       this._element!.addEventListener(event, listener);
     });

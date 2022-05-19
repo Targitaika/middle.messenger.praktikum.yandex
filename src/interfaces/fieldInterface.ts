@@ -6,4 +6,8 @@ export default interface fieldInterface {
   icon?: () => string;
   value?: string;
   isReadonly?: boolean;
+  events?: {
+    click?: () => void;
+    keydown?: (arg0?: any) => void;
+  };
 }

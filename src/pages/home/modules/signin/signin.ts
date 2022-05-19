@@ -4,41 +4,24 @@ import "./signin.css";
 import Field from "../../../../components/field";
 import Button from "../../../../components/button";
 import { fieldList } from "./mock";
-import fieldInterface from "../../../../interfaces/fieldInterface";
 
 interface SigninProps {
-  h1: string;
-  noAccountText: string;
+  h1?: string;
+  noAccountText?: string;
 }
 
 export class Signin extends Block {
   constructor(props: SigninProps) {
     super(props);
+    this.props.form = {};
   }
 
   render() {
-    const fields = fieldList
-      .map((item: fieldInterface) => {
-        if (!item.type) {
-          item.type = "";
-        }
-        let field = new Field({
-          label: item.label,
-          name: item.name,
-          placeholder: item.placeholder,
-          type: item.type,
-        });
-
-        return field.getContent()?.outerHTML;
-      })
-      .join("");
-
     return this.compile(tmpl, {
       ...this.props,
       h1: "Регистрация",
       label: "Логин",
       linkText: "Войти",
-      fields: fields,
     });
   }
 
@@ -46,6 +29,22 @@ export class Signin extends Block {
     this.children.btn = new Button({
       className: "regular",
       text: "Зарегистрироваться",
+      events: {
+        click: () => console.log(this.props.form),
+      },
     });
+    for (let i = 0; i < fieldList.length; i++) {
+      this.children[`field-${i}`] = new Field({
+        label: fieldList[i].label,
+        name: fieldList[i].name,
+        placeholder: fieldList[i].placeholder,
+        type: fieldList[i].type,
+        events: {
+          keydown: (x) => {
+            Object.assign(this.props.form, { [x.target.name]: x.target.value });
+          },
+        },
+      });
+    }
   }
 }

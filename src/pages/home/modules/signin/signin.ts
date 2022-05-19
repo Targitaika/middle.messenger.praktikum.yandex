@@ -4,6 +4,7 @@ import "./signin.css";
 import Field from "../../../../components/field";
 import Button from "../../../../components/button";
 import { fieldList } from "./mock";
+import { validateForm } from "../../../../services/validation";
 
 interface SigninProps {
   h1?: string;
@@ -40,9 +41,10 @@ export class Signin extends Block {
         placeholder: fieldList[i].placeholder,
         type: fieldList[i].type,
         events: {
-          keydown: (x) => {
+          change: (x) => {
             Object.assign(this.props.form, { [x.target.name]: x.target.value });
           },
+          blur: (x) => validateForm(x),
         },
       });
     }

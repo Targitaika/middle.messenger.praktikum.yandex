@@ -9,5 +9,8 @@ export default interface fieldInterface {
   events?: {
     click?: () => void;
     keydown?: (arg0?: any) => void;
+    change?: (arg0?: any) => void;
+    blur?: (arg0?: any) => void;
+    focus?: (arg0?: any) => void;
   };
 }

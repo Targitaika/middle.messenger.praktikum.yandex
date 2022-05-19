@@ -166,7 +166,11 @@ export default class Block {
     // console.log("events", this, events);
 
     Object.entries(events).forEach(([event, listener]) => {
-      this._element!.addEventListener(event, listener);
+      if ((event = "blur")) {
+        this._element!.addEventListener(event, listener, true);
+      } else {
+        this._element!.addEventListener(event, listener);
+      }
     });
   }
 

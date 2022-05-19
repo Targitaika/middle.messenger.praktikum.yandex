@@ -3,6 +3,7 @@ import tmpl from "./login.hbs";
 import "./login.css";
 import Field from "../../../../components/field";
 import Button from "../../../../components/button";
+import { validateForm } from "../../../../services/validation";
 
 interface LoginProps {
   h1?: string;
@@ -38,7 +39,8 @@ export class Login extends Block {
       placeholder: "******",
       type: "password",
       events: {
-        keydown: (x) => this.completeForm(x),
+        change: (x) => this.completeForm(x),
+        blur: (x) => validateForm(x),
       },
     });
 
@@ -47,7 +49,8 @@ export class Login extends Block {
       label: "Логин",
       placeholder: "Ваш логин",
       events: {
-        keydown: (x) => this.completeForm(x),
+        change: (x) => this.completeForm(x),
+        blur: (x) => validateForm(x),
       },
     });
 

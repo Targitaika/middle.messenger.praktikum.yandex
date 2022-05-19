@@ -4,6 +4,7 @@ import "./profile.css";
 import Field from "../../components/field";
 import Button from "../../components/button";
 import { fieldList } from "../home/modules/signin/mock";
+import { validateForm } from "../../services/validation";
 
 interface ProfileProps {
   fields?: string;
@@ -55,9 +56,11 @@ export class Profile extends Block {
         placeholder: fieldList[i].placeholder,
         type: fieldList[i].type,
         events: {
-          keydown: (x) => {
+          change: (x) => {
+            console.log(this.props.form);
             Object.assign(this.props.form, { [x.target.name]: x.target.value });
           },
+          blur: (x) => validateForm(x),
         },
       });
     }

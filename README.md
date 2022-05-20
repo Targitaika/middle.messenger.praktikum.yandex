@@ -1,4 +1,4 @@
-https://github.com/Targitaika/middle.messenger.praktikum.yandex/pull/1
+https://github.com/Targitaika/middle.messenger.praktikum.yandex/pull/2
 
 ### Ветка, в которой делаете задания спринта, должна называться sprint_i, где i - номер спринта. Не переименовывайте её.
 

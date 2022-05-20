@@ -11,15 +11,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const chatPage = new ChatPage({});
   const HomePage = Home({});
   const loginPage = new Login({});
-  const SigninPage = new Signin({});
+  const SigningPage = new Signin({});
   const Error404Page = Error404;
   const Error500Page = Error500;
   const ProfilePage = new Profile({});
+
   console.log(
     !!chatPage,
     !!HomePage,
     !!loginPage,
-    !!SigninPage,
+    !!SigningPage,
     !!Error404Page,
     !!Error500Page,
     !!ProfilePage

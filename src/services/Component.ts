@@ -123,8 +123,6 @@ export default class Block {
   }
 
   _makePropsProxy(props: any) {
-    // Можно и так передать this
-    // Такой способ больше не применяется с приходом ES6+
     const self = this;
     return new Proxy(props as unknown as object, {
       get(target: Record<string, unknown>, prop: string) {
@@ -136,8 +134,6 @@ export default class Block {
 
         target[prop] = value;
 
-        // Запускаем обновление компоненты
-        // Плохой cloneDeep, в следующей итерации нужно заставлять добавлять cloneDeep им самим
         self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, target);
         return true;
       },
@@ -166,7 +162,7 @@ export default class Block {
     // console.log("events", this, events);
 
     Object.entries(events).forEach(([event, listener]) => {
-      if ((event = "blur")) {
+      if (event === "blur" || event === "focus") {
         this._element!.addEventListener(event, listener, true);
       } else {
         this._element!.addEventListener(event, listener);

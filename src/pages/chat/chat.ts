@@ -1,13 +1,13 @@
-import Block from "../../services/Component";
-import tpl from "./chat.hbs";
-import Field from "../../components/field";
-import { SearchIcon } from "../../components/icons/search";
-import "./chat.css";
-import { MessagePinIcon } from "../../components/icons/messagePin";
-import { MessageSendIcon } from "../../components/icons/messageSend";
-import { MessageTikIcon } from "../../components/icons/messageTik";
-import ChatItem from "./chatItem";
-import { chatList } from "./mock";
+import Block from '../../services/Component';
+import tpl from './chat.hbs';
+import Field from '../../components/field';
+import { SearchIcon } from '../../components/icons/search';
+import './chat.css';
+import { MessagePinIcon } from '../../components/icons/messagePin';
+import { MessageSendIcon } from '../../components/icons/messageSend';
+import { MessageTikIcon } from '../../components/icons/messageTik';
+import ChatItem from './chatItem';
+import { chatList } from './mock';
 
 export class ChatPage extends Block {
   constructor(props: any) {
@@ -17,7 +17,7 @@ export class ChatPage extends Block {
   render(): DocumentFragment {
     const arr = chatList
       .map((prop) => new ChatItem(prop).getContent()?.outerHTML)
-      .join("");
+      .join('');
     return this.compile(tpl, {
       ...this.props,
       pinIcon: MessagePinIcon,
@@ -39,18 +39,18 @@ export class ChatPage extends Block {
 
   protected initChildren() {
     this.children.searchInput = new Field({
-      name: "search",
-      label: "",
-      placeholder: "Поиск",
-      type: "search",
+      name: 'search',
+      label: '',
+      placeholder: 'Поиск',
+      type: 'search',
       icon: SearchIcon,
     });
 
     this.children.messageInput = new Field({
-      name: "message",
-      label: "",
-      placeholder: "Отправить",
-      type: "send-message",
+      name: 'message',
+      label: '',
+      placeholder: 'Отправить',
+      type: 'send-message',
     });
   }
 }

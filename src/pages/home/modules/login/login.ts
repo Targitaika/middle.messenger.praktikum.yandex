@@ -1,9 +1,9 @@
-import Block from "../../../../services/Component";
-import tmpl from "./login.hbs";
-import "./login.css";
-import Field from "../../../../components/field";
-import Button from "../../../../components/button";
-import { validateForm } from "../../../../services/validation";
+import Block from '../../../../services/Component';
+import tmpl from './login.hbs';
+import './login.css';
+import Field from '../../../../components/field';
+import Button from '../../../../components/button';
+import { validateForm } from '../../../../services/validation';
 
 interface LoginProps {
   h1?: string;
@@ -27,17 +27,17 @@ export class Login extends Block {
   render() {
     return this.compile(tmpl, {
       ...this.props,
-      h1: "Вход",
-      noAccountText: "Нет аккаунта?",
+      h1: 'Вход',
+      noAccountText: 'Нет аккаунта?',
     });
   }
 
   protected initChildren() {
     this.children.password = new Field({
-      name: "password",
-      label: "Ваш пароль",
-      placeholder: "******",
-      type: "password",
+      name: 'password',
+      label: 'Ваш пароль',
+      placeholder: '******',
+      type: 'password',
       events: {
         change: (x) => this.completeForm(x),
         blur: (x) => validateForm(x),
@@ -45,9 +45,9 @@ export class Login extends Block {
     });
 
     this.children.name = new Field({
-      name: "login",
-      label: "Логин",
-      placeholder: "Ваш логин",
+      name: 'login',
+      label: 'Логин',
+      placeholder: 'Ваш логин',
       events: {
         change: (x) => this.completeForm(x),
         blur: (x) => validateForm(x),
@@ -55,8 +55,8 @@ export class Login extends Block {
     });
 
     this.children.btn = new Button({
-      className: "regular",
-      text: "Вход",
+      className: 'regular',
+      text: 'Вход',
       events: {
         click: () => this.sendForm(),
       },

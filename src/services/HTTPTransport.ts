@@ -1,8 +1,8 @@
 const METHODS = {
-  GET: "GET",
-  POST: "POST",
-  PUT: "PUT",
-  DELETE: "DELETE",
+  GET: 'GET',
+  POST: 'POST',
+  PUT: 'PUT',
+  DELETE: 'DELETE',
 };
 
 interface queryInterface {
@@ -14,41 +14,64 @@ interface HTTPTransportOptionsInterface {
 }
 
 function queryStringify(data: queryInterface): string {
-  if (typeof data !== "object") {
-    throw new Error("Data must be object");
+  if (typeof data !== 'object') {
+    throw new Error('Data must be object');
   }
 
   const keys = Object.keys(data);
   return keys.reduce(
-    (result, key, index) =>
-      `${result}${key}=${data[key]}${index < keys.length - 1 ? "&" : ""}`,
-    "?"
+    (result, key, index) => `${result}${key}=${data[key]}${index < keys.length - 1 ? '&' : ''}`,
+    '?',
   );
 }
 
 class HTTPTransport {
-  get = (url: string, options: HTTPTransportOptionsInterface = {}) =>
-    this.request(url, { ...options, method: METHODS.GET }, options.timeout);
+  get = (url: string, options: HTTPTransportOptionsInterface = {}) => this.request(
+    url,
+    {
+      ...options,
+      method: METHODS.GET,
+    },
+    options.timeout,
+  );
 
-  post = (url: string, options: HTTPTransportOptionsInterface = {}) =>
-    this.request(url, { ...options, method: METHODS.POST }, options.timeout);
+  post = (url: string, options: HTTPTransportOptionsInterface = {}) => this.request(
+    url,
+    {
+      ...options,
+      method: METHODS.POST,
+    },
+    options.timeout,
+  );
 
-  put = (url: string, options: HTTPTransportOptionsInterface = {}) =>
-    this.request(url, { ...options, method: METHODS.PUT }, options.timeout);
+  put = (url: string, options: HTTPTransportOptionsInterface = {}) => this.request(
+    url,
+    {
+      ...options,
+      method: METHODS.PUT,
+    },
+    options.timeout,
+  );
 
-  delete = (url: string, options: HTTPTransportOptionsInterface = {}) =>
-    this.request(url, { ...options, method: METHODS.DELETE }, options.timeout);
+  delete = (url: string, options: HTTPTransportOptionsInterface = {}) => this.request(
+    url,
+    {
+      ...options,
+      method: METHODS.DELETE,
+    },
+    options.timeout,
+  );
 
   request = (
     url: string,
     options: HTTPTransportOptionsInterface = {},
-    timeout = 5000
+    timeout = 5000,
   ) => {
     const { headers = {}, method, data } = options;
 
     return new Promise((resolve, reject) => {
       if (!method) {
-        reject("No method");
+        reject('No method');
         return;
       }
 

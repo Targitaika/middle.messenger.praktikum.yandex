@@ -1,10 +1,10 @@
-import Block from "../../../../services/Component";
-import tmpl from "./signin.hbs";
-import "./signin.css";
-import Field from "../../../../components/field";
-import Button from "../../../../components/button";
-import { fieldList } from "./mock";
-import { validateForm } from "../../../../services/validation";
+import Block from '../../../../services/Component';
+import tmpl from './signin.hbs';
+import './signin.css';
+import Field from '../../../../components/field';
+import Button from '../../../../components/button';
+import { fieldList } from './mock';
+import { validateForm } from '../../../../services/validation';
 
 interface SigninProps {
   h1?: string;
@@ -20,16 +20,16 @@ export class Signin extends Block {
   render() {
     return this.compile(tmpl, {
       ...this.props,
-      h1: "Регистрация",
-      label: "Логин",
-      linkText: "Войти",
+      h1: 'Регистрация',
+      label: 'Логин',
+      linkText: 'Войти',
     });
   }
 
   protected initChildren() {
     this.children.btn = new Button({
-      className: "regular",
-      text: "Зарегистрироваться",
+      className: 'regular',
+      text: 'Зарегистрироваться',
       events: {
         click: () => console.log(this.props.form),
       },

@@ -1,7 +1,7 @@
-import tmpl from "./chatItem.hbs";
-import "./chatItem.css";
-import {chatItemInterface} from "../../../interfaces/chatInterfaces";
-import Block from "../../../services/Component";
+import tmpl from './chatItem.hbs';
+import './chatItem.css';
+import { chatItemInterface } from '../../../interfaces/chatInterfaces';
+import Block from '../../../services/Component';
 
 export class ChatItem extends Block {
   constructor(props: chatItemInterface) {
@@ -9,6 +9,6 @@ export class ChatItem extends Block {
   }
 
   render() {
-    return this.compile(tmpl, {...this.props});
+    return this.compile(tmpl, { ...this.props });
   }
 }

@@ -1,19 +1,23 @@
-import EventBus from "./EventBus";
+import { v4 as makeUUID } from 'uuid';
+import EventBus from './EventBus';
 // @ts-ignore
-import { v4 as makeUUID } from "uuid";
 
 export default class Block {
   static EVENTS = {
-    INIT: "init",
-    FLOW_CDM: "flow:component-did-mount",
-    FLOW_CDU: "flow:component-did-update",
-    FLOW_RENDER: "flow:render",
+    INIT: 'init',
+    FLOW_CDM: 'flow:component-did-mount',
+    FLOW_CDU: 'flow:component-did-update',
+    FLOW_RENDER: 'flow:render',
   };
+
   _meta: { props?: any };
+
   public id = makeUUID();
 
   protected props?: any;
+
   protected children: Record<string, Block>;
+
   private eventBus: () => EventBus;
 
   constructor(propsAndChildren: any = {}) {
@@ -50,8 +54,8 @@ export default class Block {
       if (value instanceof Block) {
         children[key] = value;
       } else if (
-        Array.isArray(value) &&
-        value.every((v) => v instanceof Block)
+        Array.isArray(value)
+        && value.every((v) => v instanceof Block)
       ) {
         children[key] = value;
       } else {
@@ -127,7 +131,7 @@ export default class Block {
     return new Proxy(props as unknown as object, {
       get(target: Record<string, unknown>, prop: string) {
         const value = target[prop];
-        return typeof value === "function" ? value.bind(target) : value;
+        return typeof value === 'function' ? value.bind(target) : value;
       },
       set(target: Record<string, unknown>, prop: string, value: unknown) {
         const oldProps = { ...target };
@@ -138,13 +142,13 @@ export default class Block {
         return true;
       },
       deleteProperty() {
-        throw new Error("Нет доступа");
+        throw new Error('Нет доступа');
       },
     });
   }
 
   _removeEvents() {
-    const events: Record<string, () => void> = (this.props as any).events;
+    const { events } = this.props as any;
 
     if (!events || !this._element) {
       return;
@@ -155,14 +159,14 @@ export default class Block {
   }
 
   _addEvents() {
-    const events: Record<string, () => void> = (this.props as any).events;
+    const { events } = this.props as any;
     if (!events) {
       return;
     }
     // console.log("events", this, events);
 
     Object.entries(events).forEach(([event, listener]) => {
-      if (event === "blur" || event === "focus") {
+      if (event === 'blur' || event === 'focus') {
         this._element!.addEventListener(event, listener, true);
       } else {
         this._element!.addEventListener(event, listener);
@@ -177,7 +181,7 @@ export default class Block {
 
   compile(template: (context: any) => string, context: any) {
     const fragment = this._createDocumentElement(
-      "template"
+      'template',
     ) as HTMLTemplateElement;
 
     Object.entries(this.children).forEach(([key, child]) => {

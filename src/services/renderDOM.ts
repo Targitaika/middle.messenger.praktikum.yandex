@@ -1,13 +1,13 @@
-import Block from "./Component";
+import Block from './Component';
 
 export function renderDOM(rootSelector: string, component: Block) {
   const root = document.querySelector(rootSelector);
   if (!root) {
-    throw new Error("Root not found");
+    throw new Error('Root not found');
   }
   component.dispatchComponentDidMount();
 
-  root.innerHTML = "";
-  
+  root.innerHTML = '';
+
   root.append(component.getContent()!);
 }

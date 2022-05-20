@@ -4,7 +4,7 @@ import Field from '../../components/field';
 import { SearchIcon } from '../../components/icons/search';
 import './chat.css';
 import { MessagePinIcon } from '../../components/icons/messagePin';
-import { MessageSendIcon } from '../../components/icons/messageSend';
+import MessageSendIcon from '../../components/icons/messageSend';
 import { MessageTikIcon } from '../../components/icons/messageTik';
 import ChatItem from './chatItem';
 import { chatList } from './mock';

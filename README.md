@@ -10,6 +10,14 @@
 - `npm run start` — запуск сервера со статикой
 - `npm run build` — сборка.
 
+## Инструменты
+
+- Typescript
+- ESlint
+- Handlebars
+- POSTCss
+- Parcel
+
 ## **Netify**
 
 https://symphonious-tapioca-24f96e.netlify.app/

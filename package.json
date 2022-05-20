@@ -18,6 +18,10 @@
   },
   "homepage": "https://github.com/Targitaika/middle.messenger.praktikum.yandex/tree/sprint_1#readme",
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.25.0",
+    "@typescript-eslint/parser": "^5.25.0",
+    "eslint": "^8.15.0",
+    "eslint-config-airbnb-base": "^15.0.0",
     "parcel": "^2.4.1",
     "parcel-plugin-handlebars-precompile": "^1.0.2",
     "parcel-transformer-hbs": "^1.0.4",

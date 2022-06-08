@@ -5,6 +5,8 @@ const METHODS = {
   DELETE: 'DELETE',
 };
 
+const baseUrl = 'https://ya-praktikum.tech/api/v2';
+
 interface queryInterface {
   [index: number | string]: string;
 }
@@ -25,9 +27,15 @@ function queryStringify(data: queryInterface): string {
   );
 }
 
-class HTTPTransport {
-  get = (url: string, options: HTTPTransportOptionsInterface = {}) => this.request(
-    url,
+export default class HTTPTransport {
+  url: string;
+
+  constructor(url: string) {
+    this.url = url;
+  }
+
+  get = (url = '/', options: HTTPTransportOptionsInterface = {}) => this.request(
+    baseUrl + this.url + url,
     {
       ...options,
       method: METHODS.GET,
@@ -35,8 +43,8 @@ class HTTPTransport {
     options.timeout,
   );
 
-  post = (url: string, options: HTTPTransportOptionsInterface = {}) => this.request(
-    url,
+  post = (url = '/', options: HTTPTransportOptionsInterface = {}) => this.request(
+    baseUrl + this.url + url,
     {
       ...options,
       method: METHODS.POST,
@@ -44,8 +52,8 @@ class HTTPTransport {
     options.timeout,
   );
 
-  put = (url: string, options: HTTPTransportOptionsInterface = {}) => this.request(
-    url,
+  put = (url = '/', options: HTTPTransportOptionsInterface = {}) => this.request(
+    baseUrl + this.url + url,
     {
       ...options,
       method: METHODS.PUT,
@@ -53,8 +61,8 @@ class HTTPTransport {
     options.timeout,
   );
 
-  delete = (url: string, options: HTTPTransportOptionsInterface = {}) => this.request(
-    url,
+  delete = (url = '/', options: HTTPTransportOptionsInterface = {}) => this.request(
+    baseUrl + this.url + url,
     {
       ...options,
       method: METHODS.DELETE,
@@ -68,7 +76,7 @@ class HTTPTransport {
     timeout = 5000,
   ) => {
     const { headers = {}, method, data } = options;
-
+    console.log('alla', url, data, timeout);
     return new Promise((resolve, reject) => {
       if (!method) {
         reject('No method');
@@ -97,6 +105,7 @@ class HTTPTransport {
       if (isGet || !data) {
         xhr.send();
       } else {
+        console.log('data - ', data);
         xhr.send(data);
       }
     });

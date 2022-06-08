@@ -1,5 +1,6 @@
 import { v4 as makeUUID } from 'uuid';
 import EventBus from './EventBus';
+import isEqual from './isEqual';
 
 export default class Block {
   static EVENTS = {
@@ -45,7 +46,7 @@ export default class Block {
     return this._element;
   }
 
-  getPropsAndChildren(propsAndChildren: any) {
+  public getPropsAndChildren(propsAndChildren: any) {
     const children: any = {};
     const props: any = {};
 
@@ -71,7 +72,7 @@ export default class Block {
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
-  init() {
+  public init() {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
@@ -79,28 +80,20 @@ export default class Block {
     this.componentDidMount();
   }
 
-  componentDidMount() {}
+  public componentDidMount() {}
 
-  dispatchComponentDidMount() {
+  public dispatchComponentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
   }
 
-  _componentDidUpdate(oldProps: any, newProps: any) {
-    const response = this.componentDidUpdate(oldProps, newProps);
-    if (!response) {
-      return;
-    }
-    this._render();
-  }
-
-  componentDidUpdate(oldProps: any, newProps: any) {
-    if (oldProps === newProps) {
+  public componentDidUpdate(oldProps: any, newProps: any) {
+    if (isEqual(oldProps, newProps)) {
       return false;
     }
     return true;
   }
 
-  setProps = (nextProps: any) => {
+  public setProps = (nextProps: any) => {
     if (!nextProps) {
       return;
     }
@@ -108,77 +101,11 @@ export default class Block {
     Object.assign(this.props, nextProps);
   };
 
-  _render() {
-    const fragment = this.render();
-    const newElement = fragment.firstElementChild as HTMLElement;
-
-    if (this._element) {
-      this._removeEvents();
-      this._element.replaceWith(newElement);
-    }
-    this._element = newElement;
-
-    this._addEvents();
-  }
-
-  getContent(): HTMLElement | null {
+  public getContent(): HTMLElement | null {
     return this.element;
   }
 
-  _makePropsProxy(props: any) {
-    const self = this;
-    return new Proxy(props as unknown as object, {
-      get(target: Record<string, unknown>, prop: string) {
-        const value = target[prop];
-        return typeof value === 'function' ? value.bind(target) : value;
-      },
-      set(target: Record<string, unknown>, prop: string, value: unknown) {
-        const oldProps = { ...target };
-
-        target[prop] = value;
-
-        self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, target);
-        return true;
-      },
-      deleteProperty() {
-        throw new Error('Нет доступа');
-      },
-    });
-  }
-
-  _removeEvents() {
-    const { events } = this.props as any;
-
-    if (!events || !this._element) {
-      return;
-    }
-    Object.entries(events).forEach(([event, listener]) => {
-      this._element!.removeEventListener(event, listener);
-    });
-  }
-
-  _addEvents() {
-    const { events } = this.props as any;
-    if (!events) {
-      return;
-    }
-    // console.log("events", this, events);
-
-    Object.entries(events).forEach(([event, listener]) => {
-      if (event === 'blur' || event === 'focus') {
-        this._element!.addEventListener(event, listener, true);
-      } else {
-        this._element!.addEventListener(event, listener);
-      }
-    });
-  }
-
-  _createDocumentElement(tagName: string): HTMLElement {
-    // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
-    return document.createElement(tagName);
-  }
-
-  compile(template: (context: any) => string, context: any) {
+  public compile(template: (context: any) => string, context: any) {
     const fragment = this._createDocumentElement(
       'template',
     ) as HTMLTemplateElement;
@@ -210,5 +137,79 @@ export default class Block {
 
   protected render(): DocumentFragment {
     return new DocumentFragment();
+  }
+
+  private _componentDidUpdate(oldProps: any, newProps: any) {
+    const response = this.componentDidUpdate(oldProps, newProps);
+    if (!response) {
+      return;
+    }
+    this._render();
+  }
+
+  private _render() {
+    const fragment = this.render();
+    const newElement = fragment.firstElementChild as HTMLElement;
+
+    if (this._element) {
+      this._removeEvents();
+      this._element.replaceWith(newElement);
+    }
+    this._element = newElement;
+
+    this._addEvents();
+  }
+
+  private _makePropsProxy(props: any) {
+    const self = this;
+    return new Proxy(props as unknown as object, {
+      get(target: Record<string, unknown>, prop: string) {
+        const value = target[prop];
+        return typeof value === 'function' ? value.bind(target) : value;
+      },
+      set(target: Record<string, unknown>, prop: string, value: unknown) {
+        const oldProps = { ...target };
+
+        target[prop] = value;
+
+        self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, target);
+        return true;
+      },
+      deleteProperty() {
+        throw new Error('Нет доступа');
+      },
+    });
+  }
+
+  private _removeEvents() {
+    const { events } = this.props as any;
+
+    if (!events || !this._element) {
+      return;
+    }
+    Object.entries(events).forEach(([event, listener]) => {
+      this._element!.removeEventListener(event, listener);
+    });
+  }
+
+  private _addEvents() {
+    const { events } = this.props as any;
+    if (!events) {
+      return;
+    }
+    // console.log("events", this, events);
+
+    Object.entries(events).forEach(([event, listener]) => {
+      if (event === 'blur' || event === 'focus') {
+        this._element!.addEventListener(event, listener, true);
+      } else {
+        this._element!.addEventListener(event, listener);
+      }
+    });
+  }
+
+  private _createDocumentElement(tagName: string): HTMLElement {
+    // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
+    return document.createElement(tagName);
   }
 }

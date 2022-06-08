@@ -1,0 +1,24 @@
+:root {
+    --color-white-1: #EFEFEF;
+    --color-white-2: #EAEAEA;
+    --color-white-3: #FFFFFF;
+    --color-white-4: #FFFFFF;
+    --color-white-5: #F8F8F8;
+    --color-white-6: #E4EDFD;
+    --color-black-1: #1E1E1E;
+    --color-grey-1: #999999;
+    --color-blue-1: #3369F3;
+    --color-red-1: #FF0000;
+    font-size: 13px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: var(--color-white-4);
+    font-family: 'Inter';
+}
+
+*, *::after, *::before {
+    box-sizing: border-box;
+}

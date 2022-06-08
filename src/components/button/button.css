@@ -29,7 +29,27 @@
     cursor: pointer;
     padding: 0;
     margin: 0;
+    outline: none;
 }
+
+.btn_chat {
+    cursor: pointer;
+    background: none;
+    border: none;
+    height: 45px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: .9rem;
+    line-height: .9rem;
+    color: var(--color-grey-1);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    text-decoration: none;
+    width: 100%;
+    padding: 10px;
+}
+
 
 .btn_text:hover,
 .btn_text:focus {

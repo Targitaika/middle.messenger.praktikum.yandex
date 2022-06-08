@@ -4,11 +4,16 @@ import './login.css';
 import Field from '../../../../components/field';
 import Button from '../../../../components/button';
 import { validateForm } from '../../../../services/validation';
+import { router } from '../../../../../main';
+import LoginApi from './login.api';
+import { response } from 'express';
 
 interface LoginProps {
   h1?: string;
   noAccountText?: string;
 }
+
+const loginApi = new LoginApi();
 
 export class Login extends Block {
   constructor(props: LoginProps) {
@@ -17,7 +22,18 @@ export class Login extends Block {
   }
 
   sendForm() {
-    return console.log(this.props.form);
+    loginApi
+      .login(this.props.form)
+      .then((r: any) => {
+        if (r.response === 'OK') {
+          router.go('/messenger');
+        } else {
+          throw new Error('Wrong name or password. Can use Koka123456');
+        }
+      })
+      .catch((err) => {
+        alert(err);
+      });
   }
 
   completeForm(x: any) {
@@ -51,6 +67,14 @@ export class Login extends Block {
       events: {
         change: (x) => this.completeForm(x),
         blur: (x) => validateForm(x),
+      },
+    });
+
+    this.children.btn_text = new Button({
+      className: 'btn_text',
+      text: 'Нет аккаунта?',
+      events: {
+        click: () => router.go('/sign-up'),
       },
     });
 

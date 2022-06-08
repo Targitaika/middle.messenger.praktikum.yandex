@@ -28,7 +28,8 @@ export function validation(
       break;
     case 'phone':
       errorMessage = 'Phone validation failed';
-      checkParameter = '^[\+\d]\d{9, 14}$';
+      // checkParameterBack = /^((8|+7)[- ]?)?((?\d{3})?[- ]?)?[\d- ]{7,10}$/;
+      checkParameter = '^[+\\d]\\d{9,14}$';
       break;
     case 'name':
       errorMessage = 'Name or second name validation failed';

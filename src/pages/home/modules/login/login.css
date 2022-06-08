@@ -52,6 +52,11 @@ body {
     margin-bottom: 14px;
 }
 
+.btn-text {
+    display: flex;
+    justify-content: center;
+}
+
 .h1 {
     height: 20px;
     margin: 0 auto 40px;

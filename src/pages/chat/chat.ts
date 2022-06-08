@@ -8,8 +8,10 @@ import { MessageSendIcon } from '../../components/icons/messageSend';
 import { MessageTikIcon } from '../../components/icons/messageTik';
 import ChatItem from './chatItem';
 import { chatList } from './mock';
+import { router } from '../../../main';
+import Button from '../../components/button';
 
-export class ChatPage extends Block {
+export default class ChatPage extends Block {
   constructor(props: any) {
     super(props);
   }
@@ -38,6 +40,17 @@ export class ChatPage extends Block {
   // }
 
   protected initChildren() {
+    this.children.linkToSettings = new Button({
+      text: 'Профиль >',
+      type: 'button',
+      className: 'btn_chat',
+      events: {
+        click: () => {
+          router.go('/settings');
+        },
+      },
+    });
+
     this.children.searchInput = new Field({
       name: 'search',
       label: '',

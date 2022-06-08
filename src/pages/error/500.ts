@@ -1,7 +1,10 @@
 import ErrorLayout from '../../layout/error';
 
-export const Error500 = new ErrorLayout({
-  title: '500',
-  text: 'Мы уже фиксим',
-  linkText: 'Назад к чатам',
-});
+export default class Error500 extends ErrorLayout {
+  constructor(props: any) {
+    super(props);
+    this.props.title = '500';
+    this.props.text = 'Мы уже фиксим';
+    this.props.linkText = 'Назад к чатам';
+  }
+}

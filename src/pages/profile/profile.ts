@@ -25,10 +25,13 @@ export class Profile extends Block {
     console.log('Change password', x);
   };
 
-  saveClick = (): void => console.log(this.props.form);
+  saveClick = (): void => {
+    console.log('save');
+  };
 
-  logoutClick = (x: string): void => {
-    console.log('logout', x);
+  logoutClick = (): void => {
+    console.log('logoutClick');
+    // profileApi.logout();
   };
 
   render() {
@@ -41,12 +44,6 @@ export class Profile extends Block {
   }
 
   protected initChildren() {
-    // this.children.name = new Field({
-    //   name: "profile",
-    //   label: "Логин",
-    //   placeholder: "Ваш логин",
-    // });
-
     for (let i = 0; i < fieldList.length; i++) {
       this.children[`field-${i}`] = new Field({
         label: fieldList[i].label,
@@ -55,7 +52,6 @@ export class Profile extends Block {
         type: fieldList[i].type,
         events: {
           change: (x) => {
-            console.log(this.props.form);
             Object.assign(this.props.form, { [x.target.name]: x.target.value });
           },
           blur: (x) => validateForm(x),

@@ -5,15 +5,13 @@ import Field from '../../../../components/field';
 import Button from '../../../../components/button';
 import { validateForm } from '../../../../services/validation';
 import { router } from '../../../../../main';
-import LoginApi from './login.api';
-import { response } from 'express';
+
+import AuthController from '../../../../components/controllers/AuthController';
 
 interface LoginProps {
   h1?: string;
   noAccountText?: string;
 }
-
-const loginApi = new LoginApi();
 
 export class Login extends Block {
   constructor(props: LoginProps) {
@@ -21,19 +19,8 @@ export class Login extends Block {
     this.props.form = {};
   }
 
-  sendForm() {
-    loginApi
-      .login(this.props.form)
-      .then((r: any) => {
-        if (r.response === 'OK') {
-          router.go('/messenger');
-        } else {
-          throw new Error('Wrong name or password. Can use Koka123456');
-        }
-      })
-      .catch((err) => {
-        alert(err);
-      });
+  sendForm(data: any) {
+    AuthController.login(data);
   }
 
   completeForm(x: any) {
@@ -82,7 +69,7 @@ export class Login extends Block {
       className: 'regular',
       text: 'Вход',
       events: {
-        click: () => this.sendForm(),
+        click: () => this.sendForm(this.props.form),
       },
     });
   }

@@ -1,9 +1,9 @@
 export function validation(
   type: 'name' | 'login' | 'email' | 'password' | 'phone' | 'message',
   value: string,
-): boolean | undefined {
+): boolean {
   if (!value || !type) {
-    return;
+    return false;
   }
   let errorMessage = '';
   let checkParameter = '.{0,}';
@@ -43,14 +43,15 @@ export function validation(
         return false;
       }
       break;
+    default:
+      errorMessage = 'Validation requires a type';
+      return false;
   }
   const reg = new RegExp(checkParameter, 'g');
   if (!reg.test(value)) {
     console.log(errorMessage);
     return false;
   }
-  // console.log("Success");
-
   return true;
 }
 
@@ -59,9 +60,33 @@ export function validateForm(x: any) {
   if (type === 'second_name' || type === 'first_name') {
     type = 'name';
   }
+  if (type === 'password' || type === 'confirm_password') {
+    type = 'password';
+  }
   if (!validation(type, x.target.value)) {
     x.target.style.borderColor = 'red';
   } else {
     x.target.style.borderColor = '#3369F3';
   }
 }
+
+export const isValidToSend = (formData: {}, length: number): boolean => {
+  const entries = Object.entries(formData);
+  if (entries.length < length) {
+    return false;
+  }
+  for (let i = 0; i < entries.length; i++) {
+    let type = entries[i][0];
+    if (type === 'second_name' || type === 'first_name') {
+      type = 'name';
+    }
+    if (type === 'password' || type === 'confirm_password') {
+      type = 'password';
+    }
+    if (!validation(type, entries[i][1])) {
+      return false;
+    }
+  }
+
+  return true;
+};

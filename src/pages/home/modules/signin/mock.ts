@@ -45,7 +45,7 @@ export const fieldList: {
   },
   {
     label: 'Пароль (ещё раз)',
-    name: 'password-again',
+    name: 'confirm_password',
     placeholder: '******',
     type: 'password',
   },

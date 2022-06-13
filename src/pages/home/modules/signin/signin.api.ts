@@ -1,20 +1,23 @@
 import HTTPTransport from '../../../../services/HTTPTransport';
 import BaseAPI from '../../../../services/BaseAPI';
 
-const profileApiInstance = new HTTPTransport('/auth/');
+export interface signInInterface {
+  first_name: string;
+  second_name: string;
+  login: string;
+  email: string;
+  password: string;
+  phone: string;
+}
 
-export default class SigninApi extends BaseAPI {
-  create(data: { any: any }) {
-    const jsonD = JSON.stringify(data);
-    return profileApiInstance.post('signup', {
-      headers: {
-        'content-type': 'application/json', // Данные отправляем в формате JSON
-      },
-      data: jsonD,
-    });
+const authApiInstance = new HTTPTransport('/auth/');
+
+export default class SigninAPI extends BaseAPI {
+  create(data: signInInterface) {
+    return authApiInstance.post('signup', { data });
   }
 
   request() {
-    return profileApiInstance.get('user');
+    return authApiInstance.get('user');
   }
 }

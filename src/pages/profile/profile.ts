@@ -4,7 +4,9 @@ import './profile.css';
 import Field from '../../components/field';
 import Button from '../../components/button';
 import { fieldList } from '../home/modules/signin/mock';
-import { validateForm } from '../../services/validation';
+import { validateForm, isValidToSend } from '../../services/validation';
+
+import AuthController from '../../components/controllers/AuthController';
 
 interface ProfileProps {
   fields?: string;
@@ -13,8 +15,16 @@ interface ProfileProps {
 
 export class Profile extends Block {
   constructor(props: ProfileProps) {
+    console.log('props', props);
     super(props);
-    this.props.form = {};
+    this.props.form = {
+      email: props.email,
+      first_name: props.first_name,
+      id: props.id,
+      login: props.login,
+      phone: props.phone,
+      second_name: props.second_name,
+    };
   }
 
   changeDataClick = (x: string): void => {
@@ -25,13 +35,19 @@ export class Profile extends Block {
     console.log('Change password', x);
   };
 
-  saveClick = (): void => {
-    console.log('save');
+  handleFieldChange = (item) => {
+    Object.assign(this.props.form, { [item.target.name]: item.target.value });
+  };
+
+  saveClick = (form): void => {
+    if (isValidToSend(form)) {
+      // profileApi.updateUserProfile(form);
+    }
   };
 
   logoutClick = (): void => {
-    console.log('logoutClick');
-    // profileApi.logout();
+    console.log('click');
+    AuthController.logout();
   };
 
   render() {
@@ -45,15 +61,15 @@ export class Profile extends Block {
 
   protected initChildren() {
     for (let i = 0; i < fieldList.length; i++) {
+      const value = this.props[fieldList[i].name];
       this.children[`field-${i}`] = new Field({
         label: fieldList[i].label,
         name: fieldList[i].name,
         placeholder: fieldList[i].placeholder,
         type: fieldList[i].type,
+        value,
         events: {
-          change: (x) => {
-            Object.assign(this.props.form, { [x.target.name]: x.target.value });
-          },
+          change: (x) => this.handleFieldChange(x),
           blur: (x) => validateForm(x),
         },
       });
@@ -61,25 +77,25 @@ export class Profile extends Block {
 
     this.children.saveBtn = new Button({
       text: 'Сохранить',
-      events: { click: () => this.saveClick() },
+      events: { click: () => this.saveClick(this.props.form) },
     });
 
     this.children.changeDataBtn = new Button({
       text: 'Изменить данные',
       className: 'btn_text',
-      events: { click: () => this.changeDataClick },
+      events: { click: this.changeDataClick },
     });
 
     this.children.changePasswordBtn = new Button({
       text: 'Изменить пароль',
       className: 'btn_text',
-      events: { click: () => this.changePasswordClick },
+      events: { click: this.changePasswordClick },
     });
 
     this.children.logOutBtn = new Button({
       text: 'Выйти',
       className: 'btn_text btn_red',
-      events: { click: () => this.logoutClick },
+      events: { click: () => this.logoutClick() },
     });
   }
 }

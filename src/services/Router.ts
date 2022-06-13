@@ -22,7 +22,7 @@ export default class Router {
     Router.__instance = this;
   }
 
-  public use(pathname: string, block: any) {
+  public use(pathname: string, block: any): any {
     const route: {} = new Route(pathname, block, {
       rootQuery: this._rootQuery,
     });

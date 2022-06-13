@@ -4,16 +4,17 @@ import './signin.css';
 import Field from '../../../../components/field';
 import Button from '../../../../components/button';
 import { fieldList } from './mock';
-import { validateForm, validation } from '../../../../services/validation';
-import SigninApi from './signin.api';
+import { validateForm, isValidToSend } from '../../../../services/validation';
+import { signInInterface } from './signin.api';
 import { router } from '../../../../../main';
+import AuthController from '../../../../components/controllers/AuthController';
 
 interface SigninProps {
   h1?: string;
   noAccountText?: string;
 }
 
-const signApi = new SigninApi();
+export const id = 0;
 
 export class Signin extends Block {
   constructor(props: SigninProps) {
@@ -21,33 +22,18 @@ export class Signin extends Block {
     this.props.form = {};
   }
 
-  handleBtn(form) {
-    const isValidToSend = (formData: {}): boolean => {
-      const entries = Object.entries(formData);
-      if (entries.length < 7) {
-        return false;
-      }
-      for (let i = 0; i < entries.length; i++) {
-        if (!validation(entries[i][0], entries[i][1])) {
-          return false;
-        }
-      }
+  async onSignIn(data) {
+    try {
+      await AuthController.singin(data);
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
-      return true;
-    };
+  handleBtn(form: signInInterface) {
+    console.log(isValidToSend(form, fieldList.length));
     if (isValidToSend(form)) {
-      signApi
-        .create(form)
-        .then((r: any) => {
-          if (r.response === 'OK') {
-            router.go('/messenger');
-          } else {
-            throw new Error('Wrong request');
-          }
-        })
-        .catch((err) => {
-          alert(err);
-        });
+      this.onSignIn(form);
     }
   }
 

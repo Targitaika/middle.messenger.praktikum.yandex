@@ -98,15 +98,18 @@ export default class HTTPTransport {
 
       xhr.onabort = reject;
       xhr.onerror = reject;
+      xhr.ontimeout = reject;
+
+      xhr.setRequestHeader('Content-Type', 'application/json');
 
       xhr.timeout = timeout;
-      xhr.ontimeout = reject;
+      xhr.withCredentials = true;
+      xhr.responseType = 'json';
 
       if (isGet || !data) {
         xhr.send();
       } else {
-        console.log('data - ', data);
-        xhr.send(data);
+        xhr.send(JSON.stringify(data));
       }
     });
   };

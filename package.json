@@ -16,6 +16,13 @@
   "bugs": {
     "url": "https://github.com/Targitaika/middle.messenger.praktikum.yandex/tree/sprint_1/issues"
   },
+  "browserslist": [
+    "last 3 and_chr versions",
+    "last 3 chrome versions",
+    "last 3 opera versions",
+    "last 3 ios_saf versions",
+    "last 3 safari versions"
+  ],
   "homepage": "https://github.com/Targitaika/middle.messenger.praktikum.yandex/tree/sprint_1#readme",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.25.0",

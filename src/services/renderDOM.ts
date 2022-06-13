@@ -9,7 +9,7 @@ export default function renderDOM(rootSelector: string, component: Block) {
   // console.log('1', root.innerHTML);
   root.innerHTML = '';
 
-  // console.log('2', root.innerHTML);
+  // console.log(component);
   root.append(component.getContent()!);
   // console.log('3', root.innerHTML);
 }

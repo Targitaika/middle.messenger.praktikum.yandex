@@ -14,7 +14,6 @@ interface ButtonProps {
 export class Button extends Block {
   constructor(props: ButtonProps) {
     super(props);
-    console.log(props);
     if (!this.props.className) {
       this.setProps({ className: 'regular' });
     }

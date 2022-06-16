@@ -36,14 +36,24 @@ export default class ChatPage extends Block {
   }
 
   handleChatItemClick(e) {
-    console.log(e);
+    const chatId = parseInt(e.target.closest('li').dataset.chatId, 10);
+    const choosedChat = this.props.list.filter((item) => item.id === chatId);
+    this.setProps({ selectedChat: choosedChat[0] });
+    document.querySelectorAll('li.list-block__item').forEach((item) => {
+      item.classList.remove('selected-chat');
+    });
+    const pathChat = Array.from(
+      document.querySelectorAll('li.list-block__item'),
+    ).filter(
+      (item) => parseInt(item.dataset.chatId, 10) === this.props.selectedChat.id,
+    )[0];
+    pathChat.classList.add('selected-chat');
   }
 
   render(): DocumentFragment {
     return this.compile(tpl, {
       ...this.props,
       pinIcon: MessagePinIcon,
-      // chatList: arr,
       avatar:
         `https://ya-praktikum.tech/api/v2/resources/${this.props.avatar}`
         || 'http://sun9-44.userapi.com/impf/4E3j4SGPX2aFmmus-akOKZhswIbMDiI05Jyv6Q/DaZxg4wnOrw.jpg?size=604x604&quality=96&sign=87f803e3ec2b022b16518b613af7bd99&type=album',
@@ -53,6 +63,7 @@ export default class ChatPage extends Block {
       showModal: this.props.showUserModal ? '' : 'dn',
       showAddModal: this.props.showAddModal ? '' : 'dn',
       showRemoveModal: this.props.showRemoveModal ? '' : 'dn',
+      selectedId: this.props.selectedChat?.id,
     });
   }
 
@@ -63,14 +74,10 @@ export default class ChatPage extends Block {
         (prop: any) => new ChatItem({
           ...prop,
           events: {
-            click: () => {
-              console.log('click');
-            },
+            click: (e) => this.handleChatItemClick(e),
           },
         }),
-        // .getContent()?.outerHTML,
       );
-      // .join('');
     }
     this.children.chatList = arr;
     this.children.linkToSettings = new Button({
@@ -112,10 +119,6 @@ export default class ChatPage extends Block {
           click: () => {
             this.setProps({ showAddModal: !this.props.showAddModal });
           },
-          // click: () => ChatController.addUsersToChat({
-          //   users: [123],
-          //   chatId: 123,
-          // }),
         },
       }),
       btn_2: new Button({
@@ -150,7 +153,7 @@ export default class ChatPage extends Block {
             e.preventDefault();
             this.setProps({ showAddModal: false });
             ChatController.addUsersToChat({
-              users: [this.props.handleAddUser],
+              users: [parseInt(this.props.handleAddUser, 10)],
               chatId: this.props.selectedChat.id,
             });
           },
@@ -175,7 +178,7 @@ export default class ChatPage extends Block {
             e.preventDefault();
             this.setProps({ showRemoveModal: false });
             ChatController.deleteUsersFromChat({
-              users: [this.props.handleAddUser],
+              users: [parseInt(this.props.handleAddUser, 10)],
               chatId: this.props.selectedChat.id,
             });
           },

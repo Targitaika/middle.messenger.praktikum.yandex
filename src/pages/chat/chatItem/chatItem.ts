@@ -5,7 +5,6 @@ import Block from '../../../services/Component';
 
 export class ChatItem extends Block {
   constructor(props: chatItemInterface) {
-    console.log(props);
     super(props);
   }
 
@@ -16,7 +15,6 @@ export class ChatItem extends Block {
   render() {
     return this.compile(tmpl, {
       ...this.props,
-      events: { click: (e) => this.handleChatItemClick(e) },
     });
   }
 }

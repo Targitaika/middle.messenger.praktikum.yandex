@@ -23,7 +23,6 @@ class AuthController {
   }
 
   async singin(data: ControllerSignInData) {
-    // console.log(data.confirm_password, data.password);
     if (data.confirm_password !== data.password) {
       throw new Error('Need same password');
     }
@@ -36,8 +35,7 @@ class AuthController {
       throw new Error(response.message);
     }
     await this.fetchUser();
-    // this.password = data.password;
-    // store.set('currentPassword', data.password);
+
     document.cookie = `password=${data.password}`;
 
     router.go('/messenger');
@@ -54,9 +52,9 @@ class AuthController {
     } catch (e) {
       throw new Error(`Fetch user problem${e}`);
     }
-    // this.password = data.password;
 
     document.cookie = `password=${data.password}`;
+
     router.go('/messenger');
   }
 

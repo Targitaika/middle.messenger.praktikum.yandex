@@ -82,6 +82,7 @@ export default class Profile extends Block {
   render() {
     return this.compile(tmpl, {
       ...this.props,
+      name: this.props.display_name || 'Иван Гачимучин',
       profileImg:
         `https://ya-praktikum.tech/api/v2/resources/${this.props.avatar}`
         || 'http://sun9-44.userapi.com/impf/4E3j4SGPX2aFmmus-akOKZhswIbMDiI05Jyv6Q/DaZxg4wnOrw.jpg?size=604x604&quality=96&sign=87f803e3ec2b022b16518b613af7bd99&type=album',

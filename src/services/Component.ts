@@ -112,9 +112,11 @@ export default class Block {
 
     Object.entries(this.children).forEach(([key, child]) => {
       if (Array.isArray(child)) {
-        context[key] = child.map((ch) => `<div data-id="id-${ch.id}"></div>`);
+        const x = child.map((ch) => `<div data-id="id-${ch.id}"></div>`);
+        context[key] = x.join('');
+      } else {
+        context[key] = `<div data-id="id-${child.id}"></div>`;
       }
-      context[key] = `<div data-id="id-${child.id}"></div>`;
     });
 
     const htmlString = template(context);
@@ -122,14 +124,26 @@ export default class Block {
     fragment.innerHTML = htmlString;
 
     Object.entries(this.children).forEach(([, child]) => {
-      const stub = fragment.content.querySelector(`[data-id="id-${child.id}"]`);
-      if (!stub) {
-        return;
+      if (Array.isArray(child)) {
+        for (let i = 0; i < child.length; i++) {
+          const stub = fragment.content.querySelector(
+            `[data-id="id-${child[i].id}"]`,
+          );
+          if (!stub) {
+            return;
+          }
+          stub.replaceWith(child[i].getContent()!);
+        }
+      } else {
+        const stub = fragment.content.querySelector(
+          `[data-id="id-${child.id}"]`,
+        );
+        if (!stub) {
+          return;
+        }
+        stub.replaceWith(child.getContent()!);
       }
-
-      stub.replaceWith(child.getContent()!);
     });
-
     return fragment.content;
   }
 
@@ -197,7 +211,6 @@ export default class Block {
     if (!events) {
       return;
     }
-    // console.log("events", this, events);
 
     Object.entries(events).forEach(([event, listener]) => {
       if (event === 'blur' || event === 'focus') {

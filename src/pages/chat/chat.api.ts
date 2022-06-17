@@ -5,6 +5,7 @@ import {
   createChatData,
   deleteUsersFromChat,
   getChatsData,
+  getChatUsersSocket,
 } from './chatInterfaces';
 
 const chatApiInstance = new HTTPTransport('/chats');
@@ -24,5 +25,9 @@ export default class ChatApi extends BaseAPI {
 
   deleteUserFromChat(data: deleteUsersFromChat) {
     return chatApiInstance.delete('/users', { data });
+  }
+
+  getChatUsersSocket(data: number) {
+    return chatApiInstance.post(`/token/${data}`, {});
   }
 }

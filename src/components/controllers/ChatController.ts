@@ -3,6 +3,7 @@ import {
   createChatData,
   deleteUsersFromChat,
   getChatsData,
+  getChatUsersSocket,
 } from '../../pages/chat/chatInterfaces';
 import ChatApi from '../../pages/chat/chat.api';
 import store from '../../services/Store';
@@ -23,17 +24,21 @@ class ChatController {
 
   async createChats(data: createChatData) {
     const response: any = await this.chatApi.create(data);
-    console.log('response', response);
   }
 
   async addUsersToChat(data: addUsersToChatData) {
-    console.log(data);
     const response: any = await this.chatApi.addUserToChat(data);
-    console.log(response);
   }
 
   async deleteUsersFromChat(data: deleteUsersFromChat) {
     const response: any = await this.chatApi.deleteUserFromChat(data);
+  }
+
+  async getChatUsersSocket(data: number) {
+    const response: any = await this.chatApi.getChatUsersSocket(data);
+
+    store.set('chats.token', response.response.token);
+    return response.response.token;
   }
 }
 

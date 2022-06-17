@@ -8,10 +8,6 @@ export class ChatItem extends Block {
     super(props);
   }
 
-  handleChatItemClick(e) {
-    console.log('clicked');
-  }
-
   render() {
     return this.compile(tmpl, {
       ...this.props,

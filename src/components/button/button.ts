@@ -3,7 +3,7 @@ import tmpl from './button.hbs';
 import './button.css';
 
 interface ButtonProps {
-  text: string;
+  text: string | any;
   type?: string;
   className?: 'regular' | 'btn_text' | 'btn_red' | string;
   events?: {

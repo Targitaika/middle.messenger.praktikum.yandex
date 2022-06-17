@@ -22,7 +22,6 @@ export default class Block {
 
   constructor(propsAndChildren: any = {}) {
     const eventBus: any = new EventBus();
-
     const { props, children } = this.getPropsAndChildren(propsAndChildren);
 
     this.children = children;
@@ -51,12 +50,14 @@ export default class Block {
     const props: any = {};
 
     Object.entries(propsAndChildren).map(([key, value]) => {
+      // console.log(key, value);
       if (value instanceof Block) {
         children[key] = value;
       } else if (
         Array.isArray(value)
         && value.every((v) => v instanceof Block)
       ) {
+        // console.log('THIS', value);
         children[key] = value;
       } else {
         props[key] = value;
@@ -88,8 +89,10 @@ export default class Block {
 
   public componentDidUpdate(oldProps: any, newProps: any) {
     if (isEqual(oldProps, newProps)) {
+      // console.log('CDU false');
       return false;
     }
+    // console.log('CDU true', oldProps);
     return true;
   }
 

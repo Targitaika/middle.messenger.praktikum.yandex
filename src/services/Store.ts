@@ -36,7 +36,6 @@ class Store extends EventBus {
 
   public set(path: keyof storeDataInterface | string, value: unknown) {
     set(this.state, path, value);
-    console.log('Store', this.state, 'path', path, 'value', value);
     this.emit(StoreEvents.Updated);
   }
 }

@@ -75,3 +75,7 @@ export interface deleteUsersFromChat {
 export interface getChatUsers {
   id: number;
 }
+
+export interface getChatUsersSocket {
+  token: string;
+}

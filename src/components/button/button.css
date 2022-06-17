@@ -78,6 +78,11 @@
     padding-bottom: 15px;
 }
 
-.dn {
-    display: none;
+.btn_send-message {
+    cursor: pointer;
+    border: none;
+    background: none;
+    width: 28px;
+    height: 28px;
+    flex: 0 0 28px;
 }

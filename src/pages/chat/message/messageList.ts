@@ -9,18 +9,11 @@ export class MessageList extends Block {
   }
 
   render() {
-    console.log(this.children);
-    console.log('renderList');
     const tempArr = [
       {
-        text: 'temp',
-        time: '11:23',
+        text: 'Выбери чат, чтобы начать',
+        time: '66:66',
         className: 'message_to',
-      },
-      {
-        text: 'temp',
-        time: '11:23',
-        className: 'message_from',
       },
     ];
     if (

@@ -52,8 +52,6 @@ export default class ChatPage extends Block {
       `wss://ya-praktikum.tech/ws/chats/${this.props.id}/${this.props.selectedChat.id}/${token}`,
     );
     socket.addEventListener('open', () => {
-      // console.log('Соединение установлено');
-
       socket.send(
         JSON.stringify({
           content: '0',
@@ -64,8 +62,6 @@ export default class ChatPage extends Block {
     this.setProps({ webSocket: socket });
 
     socket.addEventListener('message', (event) => {
-      // console.log('Получены данные', event.data);
-      // console.log(typeof event.data);
       this.setProps({
         msgList: [],
       });
@@ -136,22 +132,17 @@ export default class ChatPage extends Block {
   }
 
   componentDidUpdate(oldProps: any, newProps: any): boolean {
-    console.log('COMPARE', this.props.messagesObjectList);
     if (oldProps.msgList !== newProps.msgList) {
       if (this.props.msgList) {
-        console.log('this.children.messagesList1', this.children.messagesList);
         this.children.messagesList = new MessageList({
           messagesList: this.props.msgList,
         });
-        console.log('this.children.messagesList2', this.children.messagesList);
       }
     }
     return super.componentDidUpdate(oldProps, newProps);
   }
 
   render(): DocumentFragment {
-    // this.messagesList = new MessageList({ messagesList: this.props.msgList });
-    // console.log(messagesList);
     return this.compile(tpl, {
       ...this.props,
       pinIcon: MessagePinIcon,
@@ -165,15 +156,11 @@ export default class ChatPage extends Block {
       showAddModal: this.props.showAddModal ? '' : 'dn',
       showRemoveModal: this.props.showRemoveModal ? '' : 'dn',
       selectedId: this.props.selectedChat?.id,
-      // messagesList: messagesList[0],
     });
   }
 
   protected initChildren() {
-    // // console.log(this.props, messageArr);
-    // // console.log(this.props.showUserModal, messageArr);
     let arr = [];
-    // console.log('childrenProps', this.props);
     if (this.props.list) {
       arr = this.props.list.map(
         (prop: any) => new ChatItem({

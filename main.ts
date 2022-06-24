@@ -10,6 +10,7 @@ import AuthController from './src/components/controllers/AuthController';
 import ChatController from './src/components/controllers/ChatController';
 
 export const router = new Router('#root');
+
 document.addEventListener('DOMContentLoaded', async () => {
   try {
     await AuthController.fetchUser();
@@ -18,8 +19,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
   try {
     await ChatController.getChats({
-      offset: 10,
-      limit: 10,
+      offset: 0,
+      limit: 100,
       title: '',
     });
   } catch (e) {

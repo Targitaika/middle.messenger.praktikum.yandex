@@ -23,9 +23,9 @@ export interface storeDataInterface {
   currentPassword?: { password: string };
 }
 
-export enum StoreEvents {
-  Updated = 'updated',
-}
+export const StoreEvents: Record<string, string> = {
+  Updated: 'updated',
+};
 
 class Store extends EventBus {
   private state: storeDataInterface = {};

@@ -12,7 +12,10 @@ module.exports = {
   plugins: ['@typescript-eslint'],
   rules: {
     'no-underscore-dangle': 'off',
+    'no-unused-expressions': 'off',
     'class-methods-use-this': 'off',
+    'max-classes-per-file': 'off',
+    'no-plusplus': 'off',
     'import/extensions': [
       'error',
       'ignorePackages',

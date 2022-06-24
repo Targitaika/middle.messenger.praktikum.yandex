@@ -5,15 +5,13 @@ import { SearchIcon } from '../../components/icons/search';
 import './chat.css';
 import { MessagePinIcon } from '../../components/icons/messagePin';
 import { MessageSendIcon } from '../../components/icons/messageSend';
-import { MessageTikIcon } from '../../components/icons/messageTik';
 import ChatItem from './chatItem';
 import { router } from '../../../main';
 import Button from '../../components/button';
 import ChatController from '../../components/controllers/ChatController';
 import UserModal from './userModal';
 import { FieldModal } from '../../components/fieldModal/fieldModal';
-import Message from './message';
-import MessageList from './message';
+import MessageList from './messageList';
 
 export default class ChatPage extends Block {
   constructor(props: any) {
@@ -30,8 +28,6 @@ export default class ChatPage extends Block {
     this.props.messagesObjectList = new MessageList({
       messagesList: this.props.msgList,
     });
-
-    // console.log('ChatPage', props);
   }
 
   handleSearch(e: any) {
@@ -40,7 +36,7 @@ export default class ChatPage extends Block {
 
   handleClickSearch(e: any) {
     ChatController.getChats({
-      offset: 10,
+      offset: 0,
       limit: 10,
       title: e,
     });
@@ -62,41 +58,34 @@ export default class ChatPage extends Block {
     this.setProps({ webSocket: socket });
 
     socket.addEventListener('message', (event) => {
-      this.setProps({
-        msgList: [],
-      });
       const data = JSON.parse(event.data);
-      // console.log('Получены данные', data);
-
       if (Array.isArray(data)) {
-        // console.log('isArray');
-
-        for (let i = 0; i < data.length; i++) {
-          const item = data[i];
+        const messages = data.reduce((acc, item) => {
           const messageFromServer = {
             text: item.content,
             time: item.time,
             className:
-              this.props.id === item.id ? 'message_to' : 'message_from',
+                this.props.id === item.user_id ? 'message_to' : 'message_from',
           };
-          this.setProps({
-            msgList: [...this.props.msgList, messageFromServer],
-          });
-        }
+          const result = [...acc, messageFromServer];
+          return result;
+        }, []);
+        this.setProps({
+          msgList: messages,
+        });
       } else {
         const messageFromServer = {
           text: JSON.parse(event.data).content,
           time: JSON.parse(event.data).time,
           className:
-            this.props.id === JSON.parse(event.data).id
-              ? 'message_to'
-              : 'message_from',
+              this.props.id === JSON.parse(event.data).user_id
+                ? 'message_to'
+                : 'message_from',
         };
         this.setProps({
-          msgList: [...this.props.msgList, messageFromServer],
+          msgList: [messageFromServer, ...this.props.msgList],
         });
       }
-      console.log('newProps', this.props.msgList);
     });
   }
 
@@ -135,7 +124,7 @@ export default class ChatPage extends Block {
     if (oldProps.msgList !== newProps.msgList) {
       if (this.props.msgList) {
         this.children.messagesList = new MessageList({
-          messagesList: this.props.msgList,
+          messagesList: this.props.msgList.reverse(),
         });
       }
     }
@@ -147,8 +136,8 @@ export default class ChatPage extends Block {
       ...this.props,
       pinIcon: MessagePinIcon,
       avatar:
-        `https://ya-praktikum.tech/api/v2/resources/${this.props.avatar}`
-        || 'http://sun9-44.userapi.com/impf/4E3j4SGPX2aFmmus-akOKZhswIbMDiI05Jyv6Q/DaZxg4wnOrw.jpg?size=604x604&quality=96&sign=87f803e3ec2b022b16518b613af7bd99&type=album',
+          `https://ya-praktikum.tech/api/v2/resources/${this.props.avatar}`
+          || 'http://sun9-44.userapi.com/impf/4E3j4SGPX2aFmmus-akOKZhswIbMDiI05Jyv6Q/DaZxg4wnOrw.jpg?size=604x604&quality=96&sign=87f803e3ec2b022b16518b613af7bd99&type=album',
       sendIcon: MessageSendIcon,
       // tikIcon: MessageTikIcon,
       name: this.props.display_name || this.props.first_name,
@@ -216,6 +205,12 @@ export default class ChatPage extends Block {
       type: 'send-message',
       events: {
         change: (e) => this.handleMessageInput(e.target.value),
+        keypress: (e) => {
+          if (e.key === 'Enter') {
+            this.handleSendMessage(e.target.value, this.props.webSocket);
+            e.target.value = '';
+          }
+        },
         blur: () => this.handleClickSearch(this.props.searchField),
       },
     });

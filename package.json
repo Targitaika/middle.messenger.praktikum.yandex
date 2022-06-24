@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "parcel static/index.html --no-cache",
     "build": "parcel build static/index.html",
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -26,24 +27,28 @@
   "homepage": "https://github.com/Targitaika/middle.messenger.praktikum.yandex/tree/sprint_1#readme",
   "devDependencies": {
     "@types/chai": "^4.3.1",
+    "@types/jsdom": "^16.2.14",
     "@types/mocha": "^9.1.1",
     "@typescript-eslint/eslint-plugin": "^5.25.0",
     "@typescript-eslint/parser": "^5.25.0",
-    "chai": "^4.3.6",
     "eslint": "^8.15.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^17.0.0",
-    "mocha": "^10.0.0",
+    "jsdom-global": "3.0.2",
     "parcel": "^2.4.1",
     "parcel-plugin-handlebars-precompile": "^1.0.2",
     "parcel-transformer-hbs": "^1.0.4",
     "prettier": "^2.6.2",
+    "ts-node": "^10.8.1",
     "typescript": "^4.6.4",
     "uuid": "^8.3.2"
   },
   "dependencies": {
+    "chai": "^4.3.6",
+    "mocha": "^10.0.0",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
-    "handlebars": "^4.7.7"
+    "handlebars": "^4.7.7",
+    "jsdom": "^20.0.0"
   }
 }

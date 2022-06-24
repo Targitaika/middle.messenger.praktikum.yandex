@@ -8,6 +8,7 @@ export default interface fieldInterface {
   isReadonly?: boolean;
   events?: {
     click?: () => void;
+    keypress?: (arg0?: any) => void;
     keydown?: (arg0?: any) => void;
     change?: (arg0?: any) => void;
     blur?: (arg0?: any) => void;

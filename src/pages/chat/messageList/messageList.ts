@@ -1,7 +1,7 @@
 import tmpl from './messageList.hbs';
 import './messageList.css';
 import Block from '../../../services/Component';
-import Message from '../MessageList';
+import Message from '../message';
 
 export class MessageList extends Block {
   constructor(props: any) {
@@ -27,7 +27,7 @@ export class MessageList extends Block {
     });
   }
 
-  renderMessage(arr) {
+  renderMessage(arr: undefined | any[] | number) {
     const tempArr = [
       {
         text: 'temp',
@@ -40,17 +40,13 @@ export class MessageList extends Block {
         className: 'message_from',
       },
     ];
-    if (arr === undefined || arr === 0) {
-      arr = tempArr;
+    if (Array.isArray(arr)) {
+      return arr.map((prop) => new Message({ ...prop }));
     }
-    console.log('renderMessage', arr);
-    const x = arr.map((prop) => new Message({ ...prop }));
-    console.log(x);
-    return x;
+    return tempArr.map((prop) => new Message({ ...prop }));
   }
 
   componentDidUpdate(oldProps: any, newProps: any): boolean {
-    console.log('COMPARE', oldProps, newProps);
     if (oldProps.messagesList !== newProps.messagesList) {
       this.children.messagesList = this.renderMessage(this.props.messagesList);
     }

@@ -5,11 +5,11 @@ export default function renderDOM(rootSelector: string, component: Block) {
   if (!root) {
     throw new Error('Root not found');
   }
-  component.dispatchComponentDidMount();
-  // console.log('1', root.innerHTML);
+  if (component.dispatchComponentDidMount) {
+    component.dispatchComponentDidMount();
+  }
   root.innerHTML = '';
-
-  // console.log(component);
-  root.append(component.getContent()!);
-  // console.log('3', root.innerHTML);
+  if (component.getContent) {
+    root.append(component.getContent()!);
+  }
 }

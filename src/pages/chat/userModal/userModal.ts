@@ -1,13 +1,9 @@
 import tmpl from './userModal.hbs';
 import './userModal.css';
 import Block from '../../../services/Component';
-import Button from '../../../components/button';
 
+// eslint-disable-next-line import/prefer-default-export
 export class UserModal extends Block {
-  constructor(props: any) {
-    super(props);
-  }
-
   render() {
     return this.compile(tmpl, { ...this.props });
   }

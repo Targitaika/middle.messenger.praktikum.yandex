@@ -1,10 +1,6 @@
 import set from './set';
 import EventBus from './EventBus';
 
-type Indexed<T = any> = {
-  [key in string]: T;
-};
-
 export interface currentUserInterface {
   id: number;
   first_name: string;

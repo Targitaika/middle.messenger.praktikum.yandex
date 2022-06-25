@@ -1,8 +1,14 @@
 <div class="chat-layout">
     <div class="chat-left-block">
-        <div class="link-block">
-            {{{linkToSettings}}}
+        <div class="top-left-block">
+            <div class="create-chat">
+                {{{createChatBtn}}}
+            </div>
+            <div class="link-block">
+                {{{linkToSettings}}}
+            </div>
         </div>
+
         <div class="search-block">
             {{{searchInput}}}
         </div>
@@ -14,7 +20,7 @@
         <div class="head-block">
             <div class="head-block__in">
                 <div class="head-block__img">
-                    <img src="{{{avatar}}}"/>
+                    <img alt="avatar" src="{{{avatar}}}"/>
                 </div>
                 <div class="head-block__name">{{{name}}}</div>
                 <div class="head-block__settings">{{{showUserModal}}}</div>
@@ -39,5 +45,8 @@
     </div>
     <div class="{{{showRemoveModal}}}">
         {{{removeUserModal}}}
+    </div>
+    <div class="{{{showCreateChatModal}}}">
+        {{{createChatModal}}}
     </div>
 </div>

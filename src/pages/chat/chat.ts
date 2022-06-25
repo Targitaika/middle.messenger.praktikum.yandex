@@ -20,6 +20,7 @@ export default class ChatPage extends Block {
     this.props.showUserModal = false;
     this.props.showAddModal = false;
     this.props.showRemoveModal = false;
+    this.props.showCreateChatModal = false;
     // eslint-disable-next-line prefer-destructuring
     this.props.selectedChat = props.list[0];
     this.props.messageInputValue = '';
@@ -68,8 +69,7 @@ export default class ChatPage extends Block {
             className:
               this.props.id === item.user_id ? 'message_to' : 'message_from',
           };
-          const result = [...acc, messageFromServer];
-          return result;
+          return [...acc, messageFromServer];
         }, []);
         this.setProps({
           msgList: messages,
@@ -135,7 +135,6 @@ export default class ChatPage extends Block {
   }
 
   render(): DocumentFragment {
-    console.log(tpl);
     return this.compile(tpl, {
       ...this.props,
       pinIcon: MessagePinIcon,
@@ -148,6 +147,7 @@ export default class ChatPage extends Block {
       showModal: this.props.showUserModal ? '' : 'dn',
       showAddModal: this.props.showAddModal ? '' : 'dn',
       showRemoveModal: this.props.showRemoveModal ? '' : 'dn',
+      showCreateChatModal: this.props.showCreateChatModal ? '' : 'dn',
       selectedId: this.props.selectedChat?.id,
     });
   }
@@ -166,6 +166,19 @@ export default class ChatPage extends Block {
     }
 
     this.children.chatList = arr;
+
+    this.children.createChatBtn = new Button({
+      text: 'Создать чат',
+      type: 'button',
+      className: 'btn_chat',
+      events: {
+        click: () => {
+          this.setProps({
+            showCreateChatModal: !this.props.showCreateChatModal,
+          });
+        },
+      },
+    });
 
     this.children.linkToSettings = new Button({
       text: 'Профиль >',
@@ -277,6 +290,9 @@ export default class ChatPage extends Block {
         label: 'Логин',
         placeholder: 'Логин',
         type: 'send-message',
+        events: {
+          change: (e) => this.setProps({ handleAddUser: e.target.value }),
+        },
       }),
       btn: new Button({
         text: 'Удалить',
@@ -290,6 +306,33 @@ export default class ChatPage extends Block {
               users: [parseInt(this.props.handleAddUser, 10)],
               chatId: this.props.selectedChat.id,
             });
+          },
+        },
+      }),
+    });
+
+    this.children.createChatModal = new FieldModal({
+      title: 'Создать чат',
+      field: new Field({
+        name: 'message',
+        label: 'Название чата',
+        placeholder: 'Название чата',
+        type: 'send-message',
+        events: {
+          change: (e) => this.setProps({ createChatValue: e.target.value }),
+        },
+      }),
+      btn: new Button({
+        text: 'Создать',
+        type: 'btn_text',
+        className: 'regular',
+        events: {
+          click: (e) => {
+            e.preventDefault();
+            ChatController.createChats({
+              title: this.props.createChatValue,
+            });
+            this.setProps({ showCreateChatModal: false });
           },
         },
       }),

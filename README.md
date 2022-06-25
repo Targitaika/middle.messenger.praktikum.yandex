@@ -9,6 +9,7 @@
 - `npm run dev` — запуск версии для разработчика,
 - `npm run start` — запуск сервера со статикой
 - `npm run build` — сборка.
+- `npm run test` — запуск тестов.
 
 ## Инструменты
 
@@ -17,6 +18,8 @@
 - Handlebars
 - POSTCss
 - Parcel
+- Mocha
+- Chai
 
 ## **Netify**
 

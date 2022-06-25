@@ -58,7 +58,7 @@ export default class HTTPTransport {
     isFile = false,
   ) => {
     if (!isFile) {
-      this.request(
+      return this.request(
         baseUrl + this.url + url,
         {
           ...options,
@@ -66,15 +66,14 @@ export default class HTTPTransport {
         },
         options.timeout,
       );
-    } else {
-      this.sendFile(
-        baseUrl + this.url + url,
-        {
-          ...options,
-        },
-        options.timeout,
-      );
     }
+    return this.sendFile(
+      baseUrl + this.url + url,
+      {
+        ...options,
+      },
+      options.timeout,
+    );
   };
 
   delete = (url = '/', options: HTTPTransportOptionsInterface = {}) => this.request(
@@ -86,15 +85,52 @@ export default class HTTPTransport {
     options.timeout,
   );
 
-  request = (
+  sendFile = (
+    url: string,
+    options: HTTPTransportOptionsInterface = {},
+    timeout = 5000,
+  ) => {
+    const { headers = {}, data } = options;
+
+    const formData = new FormData();
+
+    formData.append('avatar', data.files[0], 'avatar');
+
+    return new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+
+      xhr.open('PUT', url);
+
+      Object.keys(headers).forEach((key) => {
+        xhr.setRequestHeader(key, headers[key]);
+      });
+
+      // eslint-disable-next-line func-names
+      xhr.onload = function () {
+        resolve(xhr);
+      };
+      xhr.withCredentials = true;
+      xhr.onabort = reject;
+      xhr.onerror = reject;
+      xhr.ontimeout = reject;
+
+      xhr.timeout = timeout;
+      xhr.withCredentials = true;
+      xhr.responseType = 'json';
+
+      xhr.send(formData);
+    });
+  };
+
+  private request = (
     url: string,
     options: HTTPTransportOptionsInterface = {},
     timeout = 5000,
   ) => {
     const { headers = {}, method, data } = options;
-
     return new Promise((resolve, reject) => {
       if (!method) {
+        // eslint-disable-next-line prefer-promise-reject-errors
         reject('No method');
         return;
       }
@@ -108,6 +144,7 @@ export default class HTTPTransport {
         xhr.setRequestHeader(key, headers[key]);
       });
 
+      // eslint-disable-next-line func-names
       xhr.onload = function () {
         resolve(xhr);
       };
@@ -121,48 +158,11 @@ export default class HTTPTransport {
       xhr.timeout = timeout;
       xhr.withCredentials = true;
       xhr.responseType = 'json';
-
       if (isGet || !data) {
         xhr.send();
       } else {
         xhr.send(JSON.stringify(data));
       }
-    });
-  };
-
-  sendFile = (
-    url: string,
-    options: HTTPTransportOptionsInterface = {},
-    timeout = 5000,
-  ) => {
-    const { headers = {}, method, data } = options;
-
-    const formData = new FormData();
-    console.log('data', data.files);
-    formData.append('avatar', data.files[0], 'avatar');
-
-    return new Promise((resolve, reject) => {
-      const xhr = new XMLHttpRequest();
-
-      xhr.open('PUT', url);
-
-      Object.keys(headers).forEach((key) => {
-        xhr.setRequestHeader(key, headers[key]);
-      });
-
-      xhr.onload = function () {
-        resolve(xhr);
-      };
-      xhr.withCredentials = true;
-      xhr.onabort = reject;
-      xhr.onerror = reject;
-      xhr.ontimeout = reject;
-
-      xhr.timeout = timeout;
-      xhr.withCredentials = true;
-      xhr.responseType = 'json';
-      console.log('formData', formData);
-      xhr.send(formData);
     });
   };
 }

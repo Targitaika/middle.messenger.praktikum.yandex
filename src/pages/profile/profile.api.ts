@@ -2,7 +2,6 @@ import HTTPTransport from '../../services/HTTPTransport';
 import BaseAPI from '../../services/BaseAPI';
 import { signInInterface } from '../home/modules/signin/signin.api';
 
-const authApiInstance = new HTTPTransport('/auth/');
 const userApiInstance = new HTTPTransport('/user/');
 
 export interface passwordUpdate {
@@ -19,7 +18,7 @@ export default class ProfileApi extends BaseAPI {
     return userApiInstance.put('password', { data }, false);
   }
 
-  updateAvatar(data) {
+  updateAvatar(data: any) {
     // file
     return userApiInstance.put('profile/avatar', { data }, true);
   }

@@ -2,6 +2,7 @@ import Block from './Component';
 import isEqual from './isEqual';
 import store, { StoreEvents, storeDataInterface } from './Store';
 
+// eslint-disable-next-line max-len,no-unused-vars
 export const withStore = (mapStateToProps: (state: storeDataInterface) => Record<string, unknown>) => (Component: typeof Block) => {
   let state: any;
 

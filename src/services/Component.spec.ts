@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { describe, it, beforeEach } from 'mocha';
 import Component from './Component';
 
-describe.only('Component', () => {
+describe('Component', () => {
   let childComponent: Component;
   let parentComponent: Component;
 

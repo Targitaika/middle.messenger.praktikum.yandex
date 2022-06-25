@@ -5,7 +5,6 @@ import {
   createChatData,
   deleteUsersFromChat,
   getChatsData,
-  getChatUsersSocket,
 } from './chatInterfaces';
 
 const chatApiInstance = new HTTPTransport('/chats');

@@ -65,7 +65,7 @@ export default class ChatPage extends Block {
             text: item.content,
             time: item.time,
             className:
-                this.props.id === item.user_id ? 'message_to' : 'message_from',
+              this.props.id === item.user_id ? 'message_to' : 'message_from',
           };
           const result = [...acc, messageFromServer];
           return result;
@@ -78,9 +78,9 @@ export default class ChatPage extends Block {
           text: JSON.parse(event.data).content,
           time: JSON.parse(event.data).time,
           className:
-              this.props.id === JSON.parse(event.data).user_id
-                ? 'message_to'
-                : 'message_from',
+            this.props.id === JSON.parse(event.data).user_id
+              ? 'message_to'
+              : 'message_from',
         };
         this.setProps({
           msgList: [messageFromServer, ...this.props.msgList],
@@ -136,8 +136,8 @@ export default class ChatPage extends Block {
       ...this.props,
       pinIcon: MessagePinIcon,
       avatar:
-          `https://ya-praktikum.tech/api/v2/resources/${this.props.avatar}`
-          || 'http://sun9-44.userapi.com/impf/4E3j4SGPX2aFmmus-akOKZhswIbMDiI05Jyv6Q/DaZxg4wnOrw.jpg?size=604x604&quality=96&sign=87f803e3ec2b022b16518b613af7bd99&type=album',
+        `https://ya-praktikum.tech/api/v2/resources/${this.props.avatar}`
+        || 'http://sun9-44.userapi.com/impf/4E3j4SGPX2aFmmus-akOKZhswIbMDiI05Jyv6Q/DaZxg4wnOrw.jpg?size=604x604&quality=96&sign=87f803e3ec2b022b16518b613af7bd99&type=album',
       sendIcon: MessageSendIcon,
       // tikIcon: MessageTikIcon,
       name: this.props.display_name || this.props.first_name,
@@ -179,10 +179,11 @@ export default class ChatPage extends Block {
       type: 'button',
       className: 'btn_send-message',
       events: {
-        click: () => this.handleSendMessage(
-          this.props.messageInputValue,
-          this.props.webSocket,
-        ),
+        click: () => router.back(),
+        // click: () => this.handleSendMessage(
+        //   this.props.messageInputValue,
+        //   this.props.webSocket,
+        // ),
       },
     });
 

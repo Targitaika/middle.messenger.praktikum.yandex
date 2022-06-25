@@ -14,8 +14,9 @@ export default class Block {
 
   public id = makeUUID();
 
-  protected props?: any;
+  props?: any;
 
+  // eslint-disable-next-line no-use-before-define
   protected children: Record<string, Block>;
 
   private eventBus: () => EventBus;
@@ -45,19 +46,23 @@ export default class Block {
     return this._element;
   }
 
+  private static _createDocumentElement(tagName: string): HTMLElement {
+    // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
+    return document.createElement(tagName);
+  }
+
   public getPropsAndChildren(propsAndChildren: any) {
     const children: any = {};
     const props: any = {};
 
+    // eslint-disable-next-line array-callback-return
     Object.entries(propsAndChildren).map(([key, value]) => {
-      // console.log(key, value);
       if (value instanceof Block) {
         children[key] = value;
       } else if (
         Array.isArray(value)
         && value.every((v) => v instanceof Block)
       ) {
-        // console.log('THIS', value);
         children[key] = value;
       } else {
         props[key] = value;
@@ -73,10 +78,6 @@ export default class Block {
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
-  public init() {
-    this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
-  }
-
   _componentDidMount() {
     this.componentDidMount();
   }
@@ -88,12 +89,7 @@ export default class Block {
   }
 
   public componentDidUpdate(oldProps: any, newProps: any) {
-    if (isEqual(oldProps, newProps)) {
-      // console.log('CDU false');
-      return false;
-    }
-    // console.log('CDU true', oldProps);
-    return true;
+    return !isEqual(oldProps, newProps);
   }
 
   public setProps = (nextProps: any) => {
@@ -108,8 +104,10 @@ export default class Block {
     return this.element;
   }
 
+  // eslint-disable-next-line no-unused-vars
   public compile(template: (context: any) => string, context: any) {
-    const fragment = this._createDocumentElement(
+    // console.log(template, context);
+    const fragment = Block._createDocumentElement(
       'template',
     ) as HTMLTemplateElement;
 
@@ -122,9 +120,7 @@ export default class Block {
       }
     });
 
-    const htmlString = template(context);
-
-    fragment.innerHTML = htmlString;
+    fragment.innerHTML = template(context);
 
     Object.entries(this.children).forEach(([, child]) => {
       if (Array.isArray(child)) {
@@ -147,6 +143,8 @@ export default class Block {
         stub.replaceWith(child.getContent()!);
       }
     });
+    // console.log(fragment.content, typeof fragment.content);
+
     return fragment.content;
   }
 
@@ -154,6 +152,10 @@ export default class Block {
 
   protected render(): DocumentFragment {
     return new DocumentFragment();
+  }
+
+  private init() {
+    this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
   private _componentDidUpdate(oldProps: any, newProps: any) {
@@ -187,6 +189,7 @@ export default class Block {
       set(target: Record<string, unknown>, prop: string, value: unknown) {
         const oldProps = { ...target };
 
+        // eslint-disable-next-line no-param-reassign
         target[prop] = value;
 
         self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, target);
@@ -205,6 +208,7 @@ export default class Block {
       return;
     }
     Object.entries(events).forEach(([event, listener]) => {
+      // @ts-ignore
       this._element!.removeEventListener(event, listener);
     });
   }
@@ -217,15 +221,12 @@ export default class Block {
 
     Object.entries(events).forEach(([event, listener]) => {
       if (event === 'blur' || event === 'focus') {
+        // @ts-ignore
         this._element!.addEventListener(event, listener, true);
       } else {
+        // @ts-ignore
         this._element!.addEventListener(event, listener);
       }
     });
-  }
-
-  private _createDocumentElement(tagName: string): HTMLElement {
-    // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
-    return document.createElement(tagName);
   }
 }

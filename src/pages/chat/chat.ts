@@ -20,6 +20,7 @@ export default class ChatPage extends Block {
     this.props.showUserModal = false;
     this.props.showAddModal = false;
     this.props.showRemoveModal = false;
+    // eslint-disable-next-line prefer-destructuring
     this.props.selectedChat = props.list[0];
     this.props.messageInputValue = '';
     this.props.webSocket = {};
@@ -89,7 +90,7 @@ export default class ChatPage extends Block {
     });
   }
 
-  handleSendMessage(e, socket) {
+  handleSendMessage(e: any, socket: any) {
     socket.send(
       JSON.stringify({
         content: e,
@@ -103,9 +104,11 @@ export default class ChatPage extends Block {
     this.setProps({ messageInputValue: value });
   }
 
-  handleChatItemClick(e) {
+  handleChatItemClick(e: any) {
     const chatId = parseInt(e.target.closest('li').dataset.chatId, 10);
-    const choosedChat = this.props.list.filter((item) => item.id === chatId);
+    const choosedChat = this.props.list.filter(
+      (item: any) => item.id === chatId,
+    );
     this.setProps({ selectedChat: choosedChat[0] });
     document.querySelectorAll('li.list-block__item').forEach((item) => {
       item.classList.remove('selected-chat');
@@ -113,7 +116,7 @@ export default class ChatPage extends Block {
     const pathChat = Array.from(
       document.querySelectorAll('li.list-block__item'),
     ).filter(
-      (item) => parseInt(item.dataset.chatId, 10) === this.props.selectedChat.id,
+      (item: any) => parseInt(item.dataset.chatId, 10) === this.props.selectedChat.id,
     )[0];
     pathChat.classList.add('selected-chat');
 
@@ -132,6 +135,7 @@ export default class ChatPage extends Block {
   }
 
   render(): DocumentFragment {
+    console.log(tpl);
     return this.compile(tpl, {
       ...this.props,
       pinIcon: MessagePinIcon,
@@ -155,7 +159,7 @@ export default class ChatPage extends Block {
         (prop: any) => new ChatItem({
           ...prop,
           events: {
-            click: (e) => this.handleChatItemClick(e),
+            click: (e: any) => this.handleChatItemClick(e),
           },
         }),
       );
@@ -179,11 +183,10 @@ export default class ChatPage extends Block {
       type: 'button',
       className: 'btn_send-message',
       events: {
-        click: () => router.back(),
-        // click: () => this.handleSendMessage(
-        //   this.props.messageInputValue,
-        //   this.props.webSocket,
-        // ),
+        click: () => this.handleSendMessage(
+          this.props.messageInputValue,
+          this.props.webSocket,
+        ),
       },
     });
 

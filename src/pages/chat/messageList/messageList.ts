@@ -48,12 +48,14 @@ export class MessageList extends Block {
 
   componentDidUpdate(oldProps: any, newProps: any): boolean {
     if (oldProps.messagesList !== newProps.messagesList) {
+      // @ts-ignore
       this.children.messagesList = this.renderMessage(this.props.messagesList);
     }
     return super.componentDidUpdate(oldProps, newProps);
   }
 
   protected initChildren() {
+    // @ts-ignore
     this.children.messagesList = this.renderMessage(this.props.messagesList);
   }
 }

@@ -13,31 +13,26 @@ class ProfileController {
   }
 
   async updateProfile(data: ControllerSignInData) {
-    const response: any = await this.profileApi.updateUserProfile(data);
-    if (response.reason) {
-      console.log(response.reason);
-    } else {
-      throw new Error(response.message);
+    try {
+      await this.profileApi.updateUserProfile(data);
+    } catch (e) {
+      throw new Error(e.message);
     }
   }
 
-  async updatePassword(data: {}) {
-    const response: any = await this.profileApi.updatePassword(data);
-    if (response.reason) {
-      console.log(response.reason);
-    } else {
-      throw new Error(response.message);
+  async updatePassword(data: any) {
+    try {
+      await this.profileApi.updatePassword(data);
+    } catch (e) {
+      throw new Error(e.message);
     }
   }
 
   async updateAvatar(data: any) {
-    const response: any = await this.profileApi.updateAvatar(data);
-    if (response) {
-      if (response.reason) {
-        console.log(response.reason);
-      } else {
-        throw new Error(response.message);
-      }
+    try {
+      await this.profileApi.updateAvatar(data);
+    } catch (e) {
+      throw new Error(e.message);
     }
   }
 }

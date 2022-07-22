@@ -22,7 +22,7 @@ export class Signin extends Block {
     this.props.form = {};
   }
 
-  async onSignIn(data) {
+  async onSignIn(data: any) {
     try {
       await AuthController.singin(data);
     } catch (e) {
@@ -31,8 +31,7 @@ export class Signin extends Block {
   }
 
   handleBtn(form: signInInterface) {
-    console.log(isValidToSend(form, fieldList.length));
-    if (isValidToSend(form)) {
+    if (isValidToSend(form, 0)) {
       this.onSignIn(form);
     }
   }

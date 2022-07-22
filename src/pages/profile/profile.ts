@@ -13,6 +13,12 @@ import { InputFile } from '../../components/inputFile/inputFile';
 interface ProfileProps {
   fields?: string;
   profileImg?: string;
+  email?: string;
+  first_name?: string;
+  login?: string;
+  phone?: string;
+  second_name?: string;
+  display_name?: string;
 }
 
 export default class Profile extends Block {
@@ -53,7 +59,7 @@ export default class Profile extends Block {
     ProfileController.updatePassword(x);
   };
 
-  handleFieldChange = (item) => {
+  handleFieldChange = (item: any) => {
     if (item.target.name === 'password') {
       Object.assign(this.props.passwordData, {
         newPassword: item.target.value,
@@ -63,7 +69,7 @@ export default class Profile extends Block {
     }
   };
 
-  saveClick = (form): void => {
+  saveClick = (form: any): void => {
     if (isValidToSend(form, 6)) {
       ProfileController.updateProfile(form);
     } else {
@@ -75,7 +81,7 @@ export default class Profile extends Block {
     AuthController.logout();
   };
 
-  updateAvatar(e) {
+  updateAvatar(e: any) {
     ProfileController.updateAvatar(e.target);
   }
 

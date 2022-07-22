@@ -14,7 +14,7 @@ export interface currentUserInterface {
 }
 
 export interface storeDataInterface {
-  currentUser?: currentUserInterface;
+  currentUser?: currentUserInterface | any;
   chats?: any;
   currentPassword?: { password: string };
 }

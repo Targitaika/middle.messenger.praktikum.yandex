@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "parcel static/index.html --no-cache",
-    "build": "parcel build static/index.html",
-    "start": "node server.js",
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production",
+    "start": "webpack-dev-server --mode development",
     "test": "mocha"
   },
   "repository": {
@@ -16,6 +16,11 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Targitaika/middle.messenger.praktikum.yandex/tree/sprint_1/issues"
+  },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
   },
   "browserslist": [
     "last 3 and_chr versions",
@@ -32,16 +37,25 @@
     "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^5.25.0",
     "@typescript-eslint/parser": "^5.25.0",
+    "css-loader": "^6.7.1",
     "eslint": "^8.15.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^17.0.0",
+    "handlebars-loader": "^1.7.2",
+    "html-webpack-plugin": "^5.5.0",
     "jsdom-global": "3.0.2",
     "parcel": "^2.4.1",
     "parcel-plugin-handlebars-precompile": "^1.0.2",
     "parcel-transformer-hbs": "^1.0.4",
     "prettier": "^2.6.2",
+    "style-loader": "^3.3.1",
+    "ts-loader": "^9.3.1",
     "ts-node": "^10.8.1",
-    "typescript": "^4.6.4"
+    "typescript": "^4.7.4",
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.9.3",
+    "webpack-node-externals": "^3.0.0"
   },
   "dependencies": {
     "chai": "^4.3.6",

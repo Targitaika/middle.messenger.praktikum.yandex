@@ -1,6 +1,6 @@
 export function validation(
-  type: 'name' | 'login' | 'email' | 'password' | 'phone' | 'message',
-  value: string,
+  type: 'name' | 'login' | 'email' | 'password' | 'phone' | 'message' | string,
+  value: any,
 ): boolean {
   if (!value || !type) {
     return false;

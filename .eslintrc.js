@@ -15,7 +15,10 @@ module.exports = {
     'no-unused-expressions': 'off',
     'class-methods-use-this': 'off',
     'max-classes-per-file': 'off',
+    'no-restricted-exports': 'off',
+    'no-param-reassign': 'off',
     'no-plusplus': 'off',
+    'import/prefer-default-export': 'off',
     'import/extensions': [
       'error',
       'ignorePackages',

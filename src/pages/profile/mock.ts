@@ -1,4 +1,5 @@
 export const list: {
+  placeholder?: string;
   name: string;
   label: string;
   text: string;

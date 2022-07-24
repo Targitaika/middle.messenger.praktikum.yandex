@@ -3,7 +3,7 @@ export default interface fieldInterface {
   label: string;
   placeholder?: string;
   type?: string;
-  icon?: () => string;
+  icon?: (() => string) | string;
   value?: string;
   isReadonly?: boolean;
   events?: {

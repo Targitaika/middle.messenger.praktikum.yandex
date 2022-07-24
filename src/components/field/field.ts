@@ -1,5 +1,5 @@
-import Block from '../../services/Component';
 import tmpl from './field.hbs';
+import Block from '../../services/Component';
 import './field.css';
 import fieldInterface from '../../interfaces/fieldInterface';
 
@@ -36,10 +36,17 @@ export class Field extends Block {
         this.setProps({ type: 'text' });
         this.setProps({ customStyles: 'search-input' });
         break;
+      default:
+        this.setProps({ type: 'text' });
+        this.setProps({ label: 'Нужен тип филда' });
+        this.setProps({ customStyles: 'search-input' });
+        break;
     }
   }
 
   render() {
+    console.log('tmpl', tmpl);
+
     return this.compile(tmpl, { ...this.props });
   }
 }

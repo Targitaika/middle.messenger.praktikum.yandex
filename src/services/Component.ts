@@ -119,6 +119,7 @@ export default class Block {
         context[key] = `<div data-id="id-${child.id}"></div>`;
       }
     });
+    console.log(template, context);
 
     fragment.innerHTML = template(context);
 
@@ -143,6 +144,7 @@ export default class Block {
         stub.replaceWith(child.getContent()!);
       }
     });
+
     // console.log(fragment.content, typeof fragment.content);
 
     return fragment.content;

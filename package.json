@@ -23,6 +23,11 @@
     "path": false,
     "os": false
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm-run-all test lint:all"
+    }
+  },
   "browserslist": [
     "last 3 and_chr versions",
     "last 3 chrome versions",
@@ -44,6 +49,7 @@
     "eslint-config-airbnb-typescript": "^17.0.0",
     "handlebars-loader": "^1.7.2",
     "html-webpack-plugin": "^5.5.0",
+    "husky": "^8.0.1",
     "jsdom-global": "3.0.2",
     "parcel": "^2.4.1",
     "parcel-plugin-handlebars-precompile": "^1.0.2",

@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "dev": "webpack --mode development",
+    "parcelDev": "parcel static/index.html --no-cache",
     "build": "webpack --mode production",
     "start": "webpack-dev-server --mode development",
     "test": "mocha"

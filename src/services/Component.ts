@@ -106,7 +106,6 @@ export default class Block {
 
   // eslint-disable-next-line no-unused-vars
   public compile(template: (context: any) => string, context: any) {
-    // console.log(template, context);
     const fragment = Block._createDocumentElement(
       'template',
     ) as HTMLTemplateElement;

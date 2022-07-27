@@ -18,9 +18,9 @@ module.exports = {
     }),
   ],
   resolve: {
-    alias: {
-      'express-handlebars': './dist/main.bundle.js',
-    },
+    // alias: {
+    //   'express-handlebars': './dist/main.bundle.js',
+    // },
     extensions: ['.ts', '.js', '.json'],
   },
   devServer: {

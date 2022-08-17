@@ -12,8 +12,9 @@ import ChatController from './src/components/controllers/ChatController';
 export const router = new Router('#root');
 
 document.addEventListener('DOMContentLoaded', async () => {
+  console.log('router', router);
   try {
-    await AuthController.fetchUser();
+    await AuthController.fetchUser().then(() => router.go('/messenger'));
   } catch (e) {
     console.log(e);
   }

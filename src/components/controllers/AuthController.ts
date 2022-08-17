@@ -26,7 +26,7 @@ class AuthController {
     if (data.confirm_password !== data.password) {
       throw new Error('Need same password');
     }
-    // eslint-disable-next-line camelcase Asdasd123
+    // eslint-disable-next-line camelcase
     const { confirm_password, ...signInData } = data;
     const response: any = await this.signinApi.create(signInData);
     if (response.reason) {

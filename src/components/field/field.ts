@@ -45,8 +45,6 @@ export class Field extends Block {
   }
 
   render() {
-    console.log('tmpl', tmpl);
-
     return this.compile(tmpl, { ...this.props });
   }
 }

@@ -20,7 +20,7 @@ export class Login extends Block {
   }
 
   sendForm(data: any) {
-    AuthController.login(data);
+    AuthController.login(data).then(() => router.go('/messenger'));
   }
 
   completeForm(x: any) {

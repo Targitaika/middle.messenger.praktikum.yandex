@@ -1,5 +1,5 @@
 import Block from '../../services/Component';
-import tpl from './chat.hbs';
+import * as tpl from './chat.hbs';
 import Field from '../../components/field';
 // import { SearchIcon } from '../../components/icons/search';
 import './chat.css';

@@ -118,7 +118,7 @@ export default class Block {
         context[key] = `<div data-id="id-${child.id}"></div>`;
       }
     });
-    console.log(template, context);
+    console.log('template', template, context);
 
     fragment.innerHTML = template(context);
 

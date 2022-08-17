@@ -1,4 +1,4 @@
-import tmpl from './fieldModal.hbs';
+import * as tmpl from './fieldModal.hbs';
 import './fieldModal.css';
 import Block from '../../services/Component';
 

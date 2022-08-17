@@ -1,4 +1,4 @@
-import tmpl from './error.hbs';
+import * as tmpl from './error.hbs';
 import './error.css';
 import errorInterface from '../../interfaces/errorInterface';
 import Block from '../../services/Component';

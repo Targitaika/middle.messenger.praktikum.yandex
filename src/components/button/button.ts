@@ -1,5 +1,5 @@
 import Block from '../../services/Component';
-import tmpl from './button.hbs';
+import * as tmpl from './button.hbs';
 import './button.css';
 
 interface ButtonProps {

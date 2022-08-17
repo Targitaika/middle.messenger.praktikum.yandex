@@ -1,5 +1,5 @@
 import Block from '../../../../services/Component';
-import tmpl from './login.hbs';
+import * as tmpl from './login.hbs';
 import './login.css';
 import Field from '../../../../components/field';
 import Button from '../../../../components/button';

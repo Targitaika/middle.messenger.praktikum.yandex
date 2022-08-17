@@ -1,5 +1,5 @@
 import Block from '../../services/Component';
-import tmpl from './profile.hbs';
+import * as tmpl from './profile.hbs';
 import './profile.css';
 import Field from '../../components/field';
 import Button from '../../components/button';
@@ -106,8 +106,8 @@ export default class Profile extends Block {
         // isReadonly: this.props.isReadonly[fieldList[i].name],
         value,
         events: {
-          change: (x) => this.handleFieldChange(x),
-          blur: (x) => validateForm(x),
+          change: (x: any) => this.handleFieldChange(x),
+          blur: (x: any) => validateForm(x),
         },
       });
     }

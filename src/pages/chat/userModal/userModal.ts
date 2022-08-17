@@ -1,4 +1,4 @@
-import tmpl from './userModal.hbs';
+import * as tmpl from './userModal.hbs';
 import './userModal.css';
 import Block from '../../../services/Component';
 

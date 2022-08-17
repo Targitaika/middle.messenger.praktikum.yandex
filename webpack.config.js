@@ -1,26 +1,19 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
-  // context: path.resolve(__dirname, 'src'),
   mode: 'development',
   entry: './main.ts',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'main.bundle.js',
   },
-  // target: 'node',
-  // externals: [nodeExternals()],
   plugins: [
     new HtmlWebpackPlugin({
       template: './static/index.html',
     }),
   ],
   resolve: {
-    // alias: {
-    //   'express-handlebars': './dist/main.bundle.js',
-    // },
     extensions: ['.ts', '.js', '.json'],
   },
   devServer: {

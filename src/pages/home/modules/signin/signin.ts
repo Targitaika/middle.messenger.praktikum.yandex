@@ -1,5 +1,5 @@
 import Block from '../../../../services/Component';
-import tmpl from './signin.hbs';
+import * as tmpl from './signin.hbs';
 import './signin.css';
 import Field from '../../../../components/field';
 import Button from '../../../../components/button';
@@ -26,7 +26,7 @@ export class Signin extends Block {
     try {
       await AuthController.singin(data);
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   }
 

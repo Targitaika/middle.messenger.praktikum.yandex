@@ -1,4 +1,4 @@
-import tmpl from './message.hbs';
+import * as tmpl from './message.hbs';
 import './message.css';
 import Block from '../../../services/Component';
 

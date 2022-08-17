@@ -1,4 +1,4 @@
-import tmpl from './chatItem.hbs';
+import * as tmpl from './chatItem.hbs';
 import './chatItem.css';
 import { chatItemInterface } from '../../../interfaces/chatInterfaces';
 import Block from '../../../services/Component';

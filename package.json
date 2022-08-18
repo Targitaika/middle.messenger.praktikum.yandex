@@ -7,7 +7,9 @@
     "parcelDev": "parcel static/index.html --no-cache",
     "build": "webpack --mode production",
     "start": "webpack-dev-server --mode development",
-    "test": "mocha"
+    "test": "mocha",
+    "dockerBuild": "docker build -t messenger .",
+    "dockerRun": "docker run -v ~/Рабочий\\ стол/Study/Working\\ Project/middle.messenger.praktikum.yandex:/var/www -p 3000:3000 -d messenger"
   },
   "repository": {
     "type": "git",

@@ -22,7 +22,8 @@ module.exports = {
       directory: path.join(__dirname, 'dist'),
     },
     compress: true,
-    port: 4000,
+    allowedHosts: 'all',
+    port: process.env.PORT || 3000,
     open: true,
   },
   module: {

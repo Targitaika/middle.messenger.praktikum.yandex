@@ -33,6 +33,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     .use('/sign-up', Signin)
     .use('/error-404', Error404)
     .use('/error-500', Error500)
-    .use('/messenger', ChatPage)
-    .start();
+    .use('/messenger', ChatPage);
+  router.start();
 });

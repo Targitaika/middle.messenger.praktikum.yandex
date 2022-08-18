@@ -1,10 +1,7 @@
 import Block from '../../services/Component';
 import * as tpl from './chat.hbs';
 import Field from '../../components/field';
-// import { SearchIcon } from '../../components/icons/search';
 import './chat.css';
-// import { MessagePinIcon } from '../../components/icons/messagePin';
-// import { MessageSendIcon } from '../../components/icons/messageSend';
 import ChatItem from './chatItem';
 import { router } from '../../../main';
 import Button from '../../components/button';
@@ -12,6 +9,9 @@ import ChatController from '../../components/controllers/ChatController';
 import UserModal from './userModal';
 import { FieldModal } from '../../components/fieldModal/fieldModal';
 import MessageList from './messageList';
+import * as MessageSendIcon from '../../components/icons/messageSend/index.hbs';
+import * as MessagePinIcon from '../../components/icons/messagePin/index.hbs';
+import * as SearchIcon from '../../components/icons/search/index.hbs';
 
 export default class ChatPage extends Block {
   constructor(props: any) {
@@ -137,11 +137,13 @@ export default class ChatPage extends Block {
   render(): DocumentFragment {
     return this.compile(tpl, {
       ...this.props,
-      pinIcon: '../icons/messagePin.svg', // MessagePinIcon,
-      avatar:
-        `https://ya-praktikum.tech/api/v2/resources/${this.props.avatar}`
-        || 'http://sun9-44.userapi.com/impf/4E3j4SGPX2aFmmus-akOKZhswIbMDiI05Jyv6Q/DaZxg4wnOrw.jpg?size=604x604&quality=96&sign=87f803e3ec2b022b16518b613af7bd99&type=album',
-      sendIcon: '../icons/messageSend.svg', // MessageSendIcon,
+      // pinIcon: '../icons/messagePin.svg', // MessagePinIcon,
+      pinIcon: MessagePinIcon,
+      avatar: this.props.avatar
+        ? `https://ya-praktikum.tech/api/v2/resources/${this.props.avatar}`
+        : 'http://sun9-44.userapi.com/impf/4E3j4SGPX2aFmmus-akOKZhswIbMDiI05Jyv6Q/DaZxg4wnOrw.jpg?size=604x604&quality=96&sign=87f803e3ec2b022b16518b613af7bd99&type=album',
+      // sendIcon: '../icons/messageSend.svg', // MessageSendIcon,
+      sendIcon: MessageSendIcon,
       // tikIcon: MessageTikIcon,
       name: this.props.display_name || this.props.first_name,
       showModal: this.props.showUserModal ? '' : 'dn',
@@ -192,7 +194,8 @@ export default class ChatPage extends Block {
     });
 
     this.children.sendMessageBtn = new Button({
-      text: '../icons/messageSend.svg',
+      text: MessageSendIcon,
+      // text: '../icons/messageSend.svg',
       type: 'button',
       className: 'btn_send-message',
       events: {
@@ -208,7 +211,8 @@ export default class ChatPage extends Block {
       label: '',
       placeholder: 'Поиск',
       type: 'search',
-      icon: '../icons/search.svg',
+      // icon: '../icons/search.svg',
+      icon: SearchIcon,
       events: {
         change: (e) => this.handleSearch(e),
         blur: () => this.handleClickSearch(this.props.searchField),
@@ -232,7 +236,7 @@ export default class ChatPage extends Block {
       },
     });
 
-    this.children.userModal = new UserModal({
+    this.children.userModalHbs = new UserModal({
       btn_1: new Button({
         text: 'Добавить пользователя',
         type: 'btn_text',

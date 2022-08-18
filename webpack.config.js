@@ -7,6 +7,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'main.bundle.js',
+    publicPath: '',
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -17,7 +18,12 @@ module.exports = {
     extensions: ['.ts', '.js', '.json'],
   },
   devServer: {
-    port: process.env.PORT,
+    static: {
+      directory: path.join(__dirname, 'dist'),
+    },
+    compress: true,
+    port: 4000,
+    open: true,
   },
   module: {
     rules: [
@@ -42,6 +48,11 @@ module.exports = {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
         exclude: /(node_modules)/,
+      },
+      // file processing
+      {
+        test: /\.(png|svg|jpg|gif|woff(2)?|eot|ttf|otf)$/,
+        type: 'asset/resource',
       },
     ],
   },

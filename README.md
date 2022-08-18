@@ -10,6 +10,8 @@
 - `npm run start` — запуск сервера со статикой
 - `npm run build` — сборка.
 - `npm run test` — запуск тестов.
+- `npm run dockerBuild` — запуск сборки Docker образа.
+- `npm run dockerRun` — запуск Docker образа.
 
 ## Инструменты
 
@@ -17,11 +19,11 @@
 - ESlint
 - Handlebars
 - POSTCss
-- Parcel
+- Webpack
 - Mocha
 - Chai
+- Docker-
 
-## **Netify**
+## **Heroku**
 
-https://symphonious-tapioca-24f96e.netlify.app/
-
+https://rolgaizer-yandex-messenger.herokuapp.com/

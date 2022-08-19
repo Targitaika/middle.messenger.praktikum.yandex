@@ -26,6 +26,7 @@ export default class Route {
 
   public navigate(pathname: string) {
     if (this.match(pathname)) {
+      console.log('navigate2', pathname);
       this._pathname = pathname;
       this.render();
     }
@@ -42,7 +43,11 @@ export default class Route {
   }
 
   public render() {
+    console.log('render');
+
     if (!this._block) {
+      console.log('render2');
+
       this._block = new this._blockClass();
     }
     renderDOM(this._props.rootQuery, this._block);

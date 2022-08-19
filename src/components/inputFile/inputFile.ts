@@ -1,4 +1,4 @@
-import Block from '../../services/Component';
+import Block from '@services/Component';
 import * as tmpl from './inputFile.hbs';
 import './inputFile.css';
 

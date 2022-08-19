@@ -1,6 +1,6 @@
+import Block from '@services/Component';
 import * as tmpl from './fieldModal.hbs';
 import './fieldModal.css';
-import Block from '../../services/Component';
 
 export class FieldModal extends Block {
   constructor(props: any) {

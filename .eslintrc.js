@@ -18,6 +18,8 @@ module.exports = {
     'no-restricted-exports': 'off',
     'no-param-reassign': 'off',
     'no-plusplus': 'off',
+    'import/no-unresolved': 'off',
+    'no-console': 'off',
     'import/prefer-default-export': 'off',
     'import/extensions': [
       'error',

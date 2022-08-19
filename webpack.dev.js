@@ -7,7 +7,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'main.bundle.js',
-    publicPath: '',
+    publicPath: '/',
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -16,20 +16,27 @@ module.exports = {
   ],
   resolve: {
     extensions: ['.ts', '.js', '.json'],
+    alias: {
+      Main: path.resolve(__dirname, './main.ts'),
+      '@components': path.resolve('./src/components'),
+      '@pages': path.resolve('./src/pages'),
+      '@services': path.resolve('./src/services'),
+    },
   },
   devServer: {
     static: {
       directory: path.join(__dirname, 'dist'),
     },
-    compress: true,
     allowedHosts: 'all',
     port: process.env.PORT || 3000,
     open: true,
+    historyApiFallback: true,
   },
   module: {
     rules: [
       {
         test: /\.ts$/,
+
         use: [
           {
             loader: 'ts-loader',

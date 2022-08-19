@@ -1,6 +1,6 @@
+import Block from '@services/Component';
 import * as tmpl from './messageList.hbs';
 import './messageList.css';
-import Block from '../../../services/Component';
 import Message from '../message';
 
 export class MessageList extends Block {

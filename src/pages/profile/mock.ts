@@ -6,7 +6,7 @@ export const list: {
   type: string;
   events?: {
     click?: () => void;
-    keydown?: (arg0: any, arg1: any) => void;
+    keydown?: (e: Event) => void;
   };
 }[] = [
   {

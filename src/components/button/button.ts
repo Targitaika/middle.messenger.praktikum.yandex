@@ -1,4 +1,4 @@
-import Block from '../../services/Component';
+import Block from '@services/Component';
 import * as tmpl from './button.hbs';
 import './button.css';
 
@@ -7,19 +7,17 @@ interface ButtonProps {
   type?: string;
   className?: 'regular' | 'btn_text' | 'btn_red' | string;
   events?: {
-    click?: (arg0?: any) => void;
+    click?: (e: Event) => void;
   };
 }
 
 export class Button extends Block {
   constructor(props: ButtonProps) {
-    super(props);
-    if (!this.props.className) {
-      this.setProps({ className: 'regular' });
-    }
-    if (!this.props.type) {
-      this.setProps({ type: 'button' });
-    }
+    super({
+      type: 'button',
+      className: 'regular',
+      ...props,
+    });
   }
 
   render() {

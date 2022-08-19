@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "webpack --mode development",
+    "dev": "webpack --config webpack.dev.js --mode development",
     "parcelDev": "parcel static/index.html --no-cache",
-    "build": "webpack --mode production",
-    "start": "webpack-dev-server --mode development",
+    "build": "webpack --config webpack.common.js --mode production",
+    "start": "webpack-dev-server --config webpack.dev.js --hot",
     "test": "mocha",
     "dockerBuild": "docker build -t messenger .",
     "dockerRun": "docker run -v ~/Рабочий\\ стол/Study/Working\\ Project/middle.messenger.praktikum.yandex:/var/www -p 3000:3000 -d messenger"
@@ -51,7 +51,6 @@
     "eslint-config-airbnb-typescript": "17.0.0",
     "eslint-plugin-import": "^2.26.0",
     "handlebars-loader": "1.7.2",
-    "html-webpack-plugin": "5.5.0",
     "husky": "8.0.1",
     "jsdom-global": "3.0.2",
     "parcel": "2.4.1",
@@ -75,6 +74,7 @@
     "handlebars": "4.7.7",
     "jsdom": "20.0.0",
     "mocha": "10.0.0",
-    "uuid": "8.3.2"
+    "uuid": "8.3.2",
+    "html-webpack-plugin": "5.5.0"
   }
 }

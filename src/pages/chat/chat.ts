@@ -1,17 +1,17 @@
-import Block from '../../services/Component';
-import * as tpl from './chat.hbs';
-import Field from '../../components/field';
+import Field from '@components/field';
 import './chat.css';
-import ChatItem from './chatItem';
-import { router } from '../../../main';
-import Button from '../../components/button';
-import ChatController from '../../components/controllers/ChatController';
-import UserModal from './userModal';
-import { FieldModal } from '../../components/fieldModal/fieldModal';
+import Button from '@components/button';
+import ChatController from '@components/controllers/ChatController';
+import { FieldModal } from '@components/fieldModal/fieldModal';
+import * as MessageSendIcon from '@components/icons/messageSend/index.hbs';
+import * as MessagePinIcon from '@components/icons/messagePin/index.hbs';
+import * as SearchIcon from '@components/icons/search/index.hbs';
+import { router } from 'Main';
+import Block from '@services/Component';
 import MessageList from './messageList';
-import * as MessageSendIcon from '../../components/icons/messageSend/index.hbs';
-import * as MessagePinIcon from '../../components/icons/messagePin/index.hbs';
-import * as SearchIcon from '../../components/icons/search/index.hbs';
+import UserModal from './userModal';
+import ChatItem from './chatItem';
+import * as tpl from './chat.hbs';
 
 export default class ChatPage extends Block {
   constructor(props: any) {
@@ -75,13 +75,21 @@ export default class ChatPage extends Block {
           msgList: messages,
         });
       } else {
+        let JsonData = {
+          content: '',
+          time: '',
+          user_id: '',
+        };
+        try {
+          JsonData = JSON.parse(event.data);
+        } catch (e) {
+          console.error(e);
+        }
         const messageFromServer = {
-          text: JSON.parse(event.data).content,
-          time: JSON.parse(event.data).time,
+          text: JsonData.content,
+          time: JsonData.time,
           className:
-            this.props.id === JSON.parse(event.data).user_id
-              ? 'message_to'
-              : 'message_from',
+            this.props.id === JsonData.user_id ? 'message_to' : 'message_from',
         };
         this.setProps({
           msgList: [messageFromServer, ...this.props.msgList],
@@ -109,7 +117,8 @@ export default class ChatPage extends Block {
     const choosedChat = this.props.list.filter(
       (item: any) => item.id === chatId,
     );
-    this.setProps({ selectedChat: choosedChat[0] });
+    const initialChat = choosedChat[0];
+    this.setProps({ selectedChat: initialChat });
     document.querySelectorAll('li.list-block__item').forEach((item) => {
       item.classList.remove('selected-chat');
     });
@@ -225,11 +234,15 @@ export default class ChatPage extends Block {
       placeholder: 'Отправить',
       type: 'send-message',
       events: {
-        change: (e) => this.handleMessageInput(e.target.value),
+        change: (e) => e && this.handleMessageInput(e.target.value),
         keypress: (e) => {
-          if (e.key === 'Enter') {
-            this.handleSendMessage(e.target.value, this.props.webSocket);
-            e.target.value = '';
+          if (e) {
+            if (e.key === 'Enter') {
+              if (e.target) {
+                this.handleSendMessage(e.target.value, this.props.webSocket);
+                e.target.value = '';
+              }
+            }
           }
         },
         blur: () => this.handleClickSearch(this.props.searchField),
@@ -267,7 +280,7 @@ export default class ChatPage extends Block {
         placeholder: 'Логин',
         type: 'send-message',
         events: {
-          change: (e) => this.setProps({ handleAddUser: e.target.value }),
+          change: (e) => e && this.setProps({ handleAddUser: e.target.value }),
         },
       }),
       btn: new Button({
@@ -295,7 +308,7 @@ export default class ChatPage extends Block {
         placeholder: 'Логин',
         type: 'send-message',
         events: {
-          change: (e) => this.setProps({ handleAddUser: e.target.value }),
+          change: (e) => e && this.setProps({ handleAddUser: e.target.value }),
         },
       }),
       btn: new Button({
@@ -304,7 +317,7 @@ export default class ChatPage extends Block {
         className: 'regular',
         events: {
           click: (e) => {
-            e.preventDefault();
+            e && e.preventDefault();
             this.setProps({ showRemoveModal: false });
             ChatController.deleteUsersFromChat({
               users: [parseInt(this.props.handleAddUser, 10)],
@@ -323,7 +336,7 @@ export default class ChatPage extends Block {
         placeholder: 'Название чата',
         type: 'send-message',
         events: {
-          change: (e) => this.setProps({ createChatValue: e.target.value }),
+          change: (e) => e && this.setProps({ createChatValue: e.target.value }),
         },
       }),
       btn: new Button({

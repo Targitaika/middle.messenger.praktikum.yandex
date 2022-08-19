@@ -3,9 +3,9 @@ import {
   createChatData,
   deleteUsersFromChat,
   getChatsData,
-} from '../../pages/chat/chatInterfaces';
-import ChatApi from '../../pages/chat/chat.api';
-import store from '../../services/Store';
+} from '@pages/chat/chatInterfaces';
+import ChatApi from '@pages/chat/chat.api';
+import store from '@services/Store';
 
 class ChatController {
   private chatApi: ChatApi;

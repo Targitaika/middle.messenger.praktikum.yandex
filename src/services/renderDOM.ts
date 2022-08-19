@@ -5,6 +5,7 @@ export default function renderDOM(rootSelector: string, component: Block) {
   if (!root) {
     throw new Error('Root not found');
   }
+  console.log('component', component);
   if (component.dispatchComponentDidMount) {
     component.dispatchComponentDidMount();
   }

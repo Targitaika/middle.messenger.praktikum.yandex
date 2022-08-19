@@ -1,20 +1,17 @@
+import Block from '@services/Component';
 import * as tmpl from './field.hbs';
-import Block from '../../services/Component';
 import './field.css';
 import fieldInterface from '../../interfaces/fieldInterface';
 
 export class Field extends Block {
   constructor(props: fieldInterface) {
-    super(props);
-    if (!this.props.customStyles) {
-      this.setProps({ customStyles: '' });
-    }
-    if (!this.props.placeholder) {
-      this.setProps({ placeholder: '' });
-    }
-    if (!this.props.isReadonly) {
-      this.setProps({ isReadonly: false });
-    }
+    super({
+      customStyles: '',
+      placeholder: '',
+      isReadonly: false,
+      ...props,
+    });
+
     if (!this.props.label) {
       if (!this.props.name) {
         this.setProps({ name: 'Name' });

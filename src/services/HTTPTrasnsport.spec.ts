@@ -41,16 +41,12 @@ describe('HTTPTransport', () => {
 
   describe('.put', () => {
     it('should add user to chat', async () => {
-      const response: any = await testApi.put(
-        '/chats/users',
-        {
-          data: {
-            users: [61289],
-            chatId: chatResponse.id,
-          },
+      const response: any = await testApi.put('/chats/users', {
+        data: {
+          users: [61289],
+          chatId: chatResponse.id,
         },
-        false,
-      );
+      });
       expect(response.response).is.null;
     });
   });

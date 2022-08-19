@@ -71,17 +71,6 @@ export default class Block {
     return { props, children };
   }
 
-  _registerEvents(eventBus: any) {
-    eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
-    eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
-    eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
-    eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
-  }
-
-  _componentDidMount() {
-    this.componentDidMount();
-  }
-
   public componentDidMount() {}
 
   public dispatchComponentDidMount() {
@@ -152,6 +141,17 @@ export default class Block {
 
   protected render(): DocumentFragment {
     return new DocumentFragment();
+  }
+
+  private _registerEvents(eventBus: any) {
+    eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
+    eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
+    eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
+    eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
+  }
+
+  private _componentDidMount() {
+    this.componentDidMount();
   }
 
   private init() {

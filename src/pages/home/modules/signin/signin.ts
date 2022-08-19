@@ -1,13 +1,13 @@
-import Block from '../../../../services/Component';
-import * as tmpl from './signin.hbs';
 import './signin.css';
-import Field from '../../../../components/field';
-import Button from '../../../../components/button';
-import { fieldList } from './mock';
-import { validateForm, isValidToSend } from '../../../../services/validation';
+import Field from '@components/field';
+import Button from '@components/button';
+import { router } from 'Main';
+import AuthController from '@components/controllers/AuthController';
+import Block from '@services/Component';
+import { validateForm, isValidToSend } from '@services/validation';
+import * as tmpl from './signin.hbs';
 import { signInInterface } from './signin.api';
-import { router } from '../../../../../main';
-import AuthController from '../../../../components/controllers/AuthController';
+import { fieldList } from './mock';
 
 interface SigninProps {
   h1?: string;
@@ -46,7 +46,7 @@ export class Signin extends Block {
   }
 
   protected initChildren() {
-    this.children.btn = new Button({
+    this.children.registerButton = new Button({
       className: 'regular',
       text: 'Зарегистрироваться',
       events: {
@@ -54,7 +54,7 @@ export class Signin extends Block {
       },
     });
 
-    this.children.btn2 = new Button({
+    this.children.loginButton = new Button({
       className: 'btn_text',
       text: 'Войти',
       events: {
@@ -62,19 +62,22 @@ export class Signin extends Block {
       },
     });
 
-    for (let i = 0; i < fieldList.length; i++) {
-      this.children[`field-${i}`] = new Field({
-        label: fieldList[i].label,
-        name: fieldList[i].name,
-        placeholder: fieldList[i].placeholder,
-        type: fieldList[i].type,
+    fieldList.forEach((_, index) => {
+      this.children[`field-${index}`] = new Field({
+        label: fieldList[index].label,
+        name: fieldList[index].name,
+        placeholder: fieldList[index].placeholder,
+        type: fieldList[index].type,
         events: {
           change: (x) => {
-            Object.assign(this.props.form, { [x.target.name]: x.target.value });
+            x
+              && Object.assign(this.props.form, {
+                [x.target.name]: x.target.value,
+              });
           },
           blur: (x) => validateForm(x),
         },
       });
-    }
+    });
   }
 }

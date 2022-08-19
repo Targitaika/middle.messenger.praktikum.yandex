@@ -1,6 +1,20 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
+    "baseUrl": ".",
+    "paths": {
+      "Main": [
+        "./main.ts"
+      ],
+      "@components/*": [
+        "./src/components/*"
+      ],
+      "@pages/*": [
+        "./src/pages/*"
+      ],
+      "@services/*": [
+        "./src/services/*"
+      ]
+    },
     "outDir": "dist",
     "target": "es2017",
     "declaration": false,

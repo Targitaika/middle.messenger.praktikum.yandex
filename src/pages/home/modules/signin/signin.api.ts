@@ -1,5 +1,4 @@
-import HTTPTransport from '../../../../services/HTTPTransport';
-import BaseAPI from '../../../../services/BaseAPI';
+import HTTPTransport from '@services/HTTPTransport';
 
 export interface signInInterface {
   first_name: string;
@@ -12,7 +11,7 @@ export interface signInInterface {
 
 const authApiInstance = new HTTPTransport('/auth/');
 
-export default class SigninAPI extends BaseAPI {
+export default class SigninAPI {
   create(data: signInInterface) {
     return authApiInstance.post('signup', { data });
   }

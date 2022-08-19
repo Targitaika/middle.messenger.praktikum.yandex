@@ -1,14 +1,14 @@
-import Block from '../../services/Component';
-import * as tmpl from './profile.hbs';
 import './profile.css';
-import Field from '../../components/field';
-import Button from '../../components/button';
+import Field from '@components/field';
+import Button from '@components/button';
+import { validateForm, isValidToSend } from '@services/validation';
+import AuthController from '@components/controllers/AuthController';
+import ProfileController from '@components/controllers/ProfileController';
+import getCookie from '@services/getCookie';
+import { InputFile } from '@components/inputFile/inputFile';
+import Block from '@services/Component';
+import * as tmpl from './profile.hbs';
 import { list as fieldList } from './mock';
-import { validateForm, isValidToSend } from '../../services/validation';
-import AuthController from '../../components/controllers/AuthController';
-import ProfileController from '../../components/controllers/ProfileController';
-import getCookie from '../../services/getCookie';
-import { InputFile } from '../../components/inputFile/inputFile';
 
 interface ProfileProps {
   fields?: string;
@@ -19,6 +19,13 @@ interface ProfileProps {
   phone?: string;
   second_name?: string;
   display_name?: string;
+}
+
+export interface EventWithNameAndValue extends EventTarget {
+  target: {
+    name: string;
+    value: string;
+  };
 }
 
 export default class Profile extends Block {
@@ -59,13 +66,15 @@ export default class Profile extends Block {
     ProfileController.updatePassword(x);
   };
 
-  handleFieldChange = (item: any) => {
-    if (item.target.name === 'password') {
+  handleFieldChange = (name: string, value: string) => {
+    if (name === 'password') {
       Object.assign(this.props.passwordData, {
-        newPassword: item.target.value,
+        newPassword: value,
       });
     } else {
-      Object.assign(this.props.form, { [item.target.name]: item.target.value });
+      Object.assign(this.props.form, {
+        [name]: value,
+      });
     }
   };
 
@@ -106,7 +115,9 @@ export default class Profile extends Block {
         // isReadonly: this.props.isReadonly[fieldList[i].name],
         value,
         events: {
-          change: (x: any) => this.handleFieldChange(x),
+          change: (e: EventWithNameAndValue) => (e?.target
+            ? this.handleFieldChange(e.target.name, e.target.value)
+            : console.log(`field ${i} has some problems`)),
           blur: (x: any) => validateForm(x),
         },
       });

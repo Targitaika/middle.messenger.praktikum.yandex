@@ -1,5 +1,5 @@
-import ProfileApi from '../../pages/profile/profile.api';
-import { signInInterface } from '../../pages/home/modules/signin/signin.api';
+import ProfileApi from '@pages/profile/profile.api';
+import { signInInterface } from '@pages/home/modules/signin/signin.api';
 
 export interface ControllerSignInData extends signInInterface {
   confirm_password: string;

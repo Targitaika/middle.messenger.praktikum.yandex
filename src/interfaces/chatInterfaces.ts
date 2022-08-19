@@ -1,4 +1,4 @@
-import fieldInterface from "./fieldInterface";
+import fieldInterface from './fieldInterface';
 
 export interface chatItemInterface {
   name: string;
@@ -8,7 +8,7 @@ export interface chatItemInterface {
   unread: number;
 }
 
-export interface infoInterface {
+export interface InfoInterface {
   pinIcon: () => string;
   sendIcon: () => string;
   tikIcon: () => string;

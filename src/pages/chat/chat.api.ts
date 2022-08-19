@@ -1,5 +1,4 @@
-import HTTPTransport from '../../services/HTTPTransport';
-import BaseAPI from '../../services/BaseAPI';
+import HTTPTransport from '@services/HTTPTransport';
 import {
   addUsersToChatData,
   createChatData,
@@ -9,7 +8,7 @@ import {
 
 const chatApiInstance = new HTTPTransport('/chats');
 
-export default class ChatApi extends BaseAPI {
+export default class ChatApi {
   request(data: getChatsData) {
     return chatApiInstance.get('', { data });
   }

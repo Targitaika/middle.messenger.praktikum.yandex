@@ -1,20 +1,22 @@
-import Login from './src/pages/home/modules/login';
-import Signin from './src/pages/home/modules/signin';
-import Error404 from './src/pages/error/404';
-import Error500 from './src/pages/error/500';
-import ChatPage from './src/pages/chat';
-import Profile from './src/pages/profile';
+// import Login from '@pages/home/modules/login';
+import Login from '@pages/home/modules/login';
+import Signin from '@pages/home/modules/signin';
+import Error404 from '@pages/error/404';
+import Error500 from '@pages/error/500';
+import ChatPage from '@pages/chat';
+import Profile from '@pages/profile';
 import './src/layout/main/main.css';
+import AuthController from '@components/controllers/AuthController';
+import ChatController from '@components/controllers/ChatController';
 import Router from './src/services/Router';
-import AuthController from './src/components/controllers/AuthController';
-import ChatController from './src/components/controllers/ChatController';
 
 export const router = new Router('#root');
 
 document.addEventListener('DOMContentLoaded', async () => {
-  console.log('router', router);
   try {
-    await AuthController.fetchUser().then(() => router.go('/messenger'));
+    await AuthController.fetchUser().then(() => {
+      router.go('/messenger');
+    });
   } catch (e) {
     console.log(e);
   }

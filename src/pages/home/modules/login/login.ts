@@ -1,20 +1,15 @@
-import Block from '../../../../services/Component';
-import * as tmpl from './login.hbs';
+import Block from '@services/Component';
 import './login.css';
-import Field from '../../../../components/field';
-import Button from '../../../../components/button';
-import { validateForm } from '../../../../services/validation';
-import { router } from '../../../../../main';
+import Field from '@components/field';
+import Button from '@components/button';
+import { validateForm } from '@services/validation';
+import AuthController from '@components/controllers/AuthController';
 
-import AuthController from '../../../../components/controllers/AuthController';
-
-interface LoginProps {
-  h1?: string;
-  noAccountText?: string;
-}
+import { router } from 'Main';
+import * as tmpl from './login.hbs';
 
 export class Login extends Block {
-  constructor(props: LoginProps) {
+  constructor(props: any) {
     super(props);
     this.props.form = {};
   }

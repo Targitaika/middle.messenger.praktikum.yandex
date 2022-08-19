@@ -1,12 +1,10 @@
 import SigninAPI, {
   signInInterface,
-} from '../../pages/home/modules/signin/signin.api';
-import LoginApi, {
-  loginInterface,
-} from '../../pages/home/modules/login/login.api';
+} from '@pages/home/modules/signin/signin.api';
+import LoginApi, { loginInterface } from '@pages/home/modules/login/login.api';
 
-import store from '../../services/Store';
-import { router } from '../../../main';
+import store from '@services/Store';
+import { router } from 'Main';
 
 export interface ControllerSignInData extends signInInterface {
   confirm_password: string;

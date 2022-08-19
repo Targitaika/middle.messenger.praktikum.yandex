@@ -208,10 +208,12 @@ export default class ChatPage extends Block {
       type: 'button',
       className: 'btn_send-message',
       events: {
-        click: () => this.handleSendMessage(
-          this.props.messageInputValue,
-          this.props.webSocket,
-        ),
+        click: () => {
+          this.handleSendMessage(
+            this.props.messageInputValue,
+            this.props.webSocket,
+          );
+        },
       },
     });
 
@@ -233,6 +235,7 @@ export default class ChatPage extends Block {
       label: '',
       placeholder: 'Отправить',
       type: 'send-message',
+      value: this.props.messageInputValue,
       events: {
         change: (e) => e && this.handleMessageInput(e.target.value),
         keypress: (e) => {
